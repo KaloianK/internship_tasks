@@ -1,0 +1,13 @@
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\StringifyNumbers\bin\Debug\netcoreapp3.1\StringifyNumbers.exe
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\StringifyNumbers\bin\Debug\netcoreapp3.1\StringifyNumbers.deps.json
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\StringifyNumbers\bin\Debug\netcoreapp3.1\StringifyNumbers.runtimeconfig.json
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\StringifyNumbers\bin\Debug\netcoreapp3.1\StringifyNumbers.runtimeconfig.dev.json
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\StringifyNumbers\bin\Debug\netcoreapp3.1\StringifyNumbers.dll
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\StringifyNumbers\bin\Debug\netcoreapp3.1\StringifyNumbers.pdb
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\StringifyNumbers\obj\Debug\netcoreapp3.1\StringifyNumbers.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\StringifyNumbers\obj\Debug\netcoreapp3.1\StringifyNumbers.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\StringifyNumbers\obj\Debug\netcoreapp3.1\StringifyNumbers.AssemblyInfo.cs
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\StringifyNumbers\obj\Debug\netcoreapp3.1\StringifyNumbers.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\StringifyNumbers\obj\Debug\netcoreapp3.1\StringifyNumbers.dll
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\StringifyNumbers\obj\Debug\netcoreapp3.1\StringifyNumbers.pdb
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\StringifyNumbers\obj\Debug\netcoreapp3.1\StringifyNumbers.genruntimeconfig.cache

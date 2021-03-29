@@ -1,0 +1,13 @@
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\MethodsProblems\bin\Debug\netcoreapp3.1\MethodsProblems.exe
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\MethodsProblems\bin\Debug\netcoreapp3.1\MethodsProblems.deps.json
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\MethodsProblems\bin\Debug\netcoreapp3.1\MethodsProblems.runtimeconfig.json
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\MethodsProblems\bin\Debug\netcoreapp3.1\MethodsProblems.runtimeconfig.dev.json
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\MethodsProblems\bin\Debug\netcoreapp3.1\MethodsProblems.dll
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\MethodsProblems\bin\Debug\netcoreapp3.1\MethodsProblems.pdb
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\MethodsProblems\obj\Debug\netcoreapp3.1\MethodsProblems.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\MethodsProblems\obj\Debug\netcoreapp3.1\MethodsProblems.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\MethodsProblems\obj\Debug\netcoreapp3.1\MethodsProblems.AssemblyInfo.cs
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\MethodsProblems\obj\Debug\netcoreapp3.1\MethodsProblems.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\MethodsProblems\obj\Debug\netcoreapp3.1\MethodsProblems.dll
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\MethodsProblems\obj\Debug\netcoreapp3.1\MethodsProblems.pdb
+C:\Users\Administrator\Desktop\WorkDayz\07.MethodProblems\MethodsProblems\obj\Debug\netcoreapp3.1\MethodsProblems.genruntimeconfig.cache
