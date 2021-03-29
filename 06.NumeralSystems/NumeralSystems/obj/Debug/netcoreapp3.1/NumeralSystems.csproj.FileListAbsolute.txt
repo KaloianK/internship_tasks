@@ -1,0 +1,13 @@
+C:\Users\Administrator\Desktop\WorkDayz\06.NumeralSystems\NumeralSystems\bin\Debug\netcoreapp3.1\NumeralSystems.exe
+C:\Users\Administrator\Desktop\WorkDayz\06.NumeralSystems\NumeralSystems\bin\Debug\netcoreapp3.1\NumeralSystems.deps.json
+C:\Users\Administrator\Desktop\WorkDayz\06.NumeralSystems\NumeralSystems\bin\Debug\netcoreapp3.1\NumeralSystems.runtimeconfig.json
+C:\Users\Administrator\Desktop\WorkDayz\06.NumeralSystems\NumeralSystems\bin\Debug\netcoreapp3.1\NumeralSystems.runtimeconfig.dev.json
+C:\Users\Administrator\Desktop\WorkDayz\06.NumeralSystems\NumeralSystems\bin\Debug\netcoreapp3.1\NumeralSystems.dll
+C:\Users\Administrator\Desktop\WorkDayz\06.NumeralSystems\NumeralSystems\bin\Debug\netcoreapp3.1\NumeralSystems.pdb
+C:\Users\Administrator\Desktop\WorkDayz\06.NumeralSystems\NumeralSystems\obj\Debug\netcoreapp3.1\NumeralSystems.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\WorkDayz\06.NumeralSystems\NumeralSystems\obj\Debug\netcoreapp3.1\NumeralSystems.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\WorkDayz\06.NumeralSystems\NumeralSystems\obj\Debug\netcoreapp3.1\NumeralSystems.AssemblyInfo.cs
+C:\Users\Administrator\Desktop\WorkDayz\06.NumeralSystems\NumeralSystems\obj\Debug\netcoreapp3.1\NumeralSystems.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\WorkDayz\06.NumeralSystems\NumeralSystems\obj\Debug\netcoreapp3.1\NumeralSystems.dll
+C:\Users\Administrator\Desktop\WorkDayz\06.NumeralSystems\NumeralSystems\obj\Debug\netcoreapp3.1\NumeralSystems.pdb
+C:\Users\Administrator\Desktop\WorkDayz\06.NumeralSystems\NumeralSystems\obj\Debug\netcoreapp3.1\NumeralSystems.genruntimeconfig.cache

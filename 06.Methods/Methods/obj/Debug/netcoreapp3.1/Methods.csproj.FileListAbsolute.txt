@@ -1,0 +1,13 @@
+C:\Users\Administrator\Desktop\WorkDayz\06.Methods\Methods\bin\Debug\netcoreapp3.1\Methods.exe
+C:\Users\Administrator\Desktop\WorkDayz\06.Methods\Methods\bin\Debug\netcoreapp3.1\Methods.deps.json
+C:\Users\Administrator\Desktop\WorkDayz\06.Methods\Methods\bin\Debug\netcoreapp3.1\Methods.runtimeconfig.json
+C:\Users\Administrator\Desktop\WorkDayz\06.Methods\Methods\bin\Debug\netcoreapp3.1\Methods.runtimeconfig.dev.json
+C:\Users\Administrator\Desktop\WorkDayz\06.Methods\Methods\bin\Debug\netcoreapp3.1\Methods.dll
+C:\Users\Administrator\Desktop\WorkDayz\06.Methods\Methods\bin\Debug\netcoreapp3.1\Methods.pdb
+C:\Users\Administrator\Desktop\WorkDayz\06.Methods\Methods\obj\Debug\netcoreapp3.1\Methods.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\WorkDayz\06.Methods\Methods\obj\Debug\netcoreapp3.1\Methods.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\WorkDayz\06.Methods\Methods\obj\Debug\netcoreapp3.1\Methods.AssemblyInfo.cs
+C:\Users\Administrator\Desktop\WorkDayz\06.Methods\Methods\obj\Debug\netcoreapp3.1\Methods.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\WorkDayz\06.Methods\Methods\obj\Debug\netcoreapp3.1\Methods.dll
+C:\Users\Administrator\Desktop\WorkDayz\06.Methods\Methods\obj\Debug\netcoreapp3.1\Methods.pdb
+C:\Users\Administrator\Desktop\WorkDayz\06.Methods\Methods\obj\Debug\netcoreapp3.1\Methods.genruntimeconfig.cache
