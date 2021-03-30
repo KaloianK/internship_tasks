@@ -1,0 +1,13 @@
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\RecursionProblems\bin\Debug\netcoreapp3.1\RecursionProblems.exe
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\RecursionProblems\bin\Debug\netcoreapp3.1\RecursionProblems.deps.json
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\RecursionProblems\bin\Debug\netcoreapp3.1\RecursionProblems.runtimeconfig.json
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\RecursionProblems\bin\Debug\netcoreapp3.1\RecursionProblems.runtimeconfig.dev.json
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\RecursionProblems\bin\Debug\netcoreapp3.1\RecursionProblems.dll
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\RecursionProblems\bin\Debug\netcoreapp3.1\RecursionProblems.pdb
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\RecursionProblems\obj\Debug\netcoreapp3.1\RecursionProblems.csprojAssemblyReference.cache
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\RecursionProblems\obj\Debug\netcoreapp3.1\RecursionProblems.AssemblyInfoInputs.cache
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\RecursionProblems\obj\Debug\netcoreapp3.1\RecursionProblems.AssemblyInfo.cs
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\RecursionProblems\obj\Debug\netcoreapp3.1\RecursionProblems.csproj.CoreCompileInputs.cache
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\RecursionProblems\obj\Debug\netcoreapp3.1\RecursionProblems.dll
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\RecursionProblems\obj\Debug\netcoreapp3.1\RecursionProblems.pdb
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\RecursionProblems\obj\Debug\netcoreapp3.1\RecursionProblems.genruntimeconfig.cache

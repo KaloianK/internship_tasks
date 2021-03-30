@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recursion", "Recursion.csproj", "{044CEAF2-7BA2-4E5B-B9EA-735001D91C61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabyrinthSearch", "..\LabyrinthSearch\LabyrinthSearch.csproj", "{601006CE-0C5D-4B4B-AC41-ECB3C75E849D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecursionProblems", "..\RecursionProblems\RecursionProblems.csproj", "{B7C585AB-7B50-4223-8C60-67D803C1D0B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{044CEAF2-7BA2-4E5B-B9EA-735001D91C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{044CEAF2-7BA2-4E5B-B9EA-735001D91C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{044CEAF2-7BA2-4E5B-B9EA-735001D91C61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{601006CE-0C5D-4B4B-AC41-ECB3C75E849D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{601006CE-0C5D-4B4B-AC41-ECB3C75E849D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{601006CE-0C5D-4B4B-AC41-ECB3C75E849D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{601006CE-0C5D-4B4B-AC41-ECB3C75E849D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7C585AB-7B50-4223-8C60-67D803C1D0B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7C585AB-7B50-4223-8C60-67D803C1D0B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7C585AB-7B50-4223-8C60-67D803C1D0B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7C585AB-7B50-4223-8C60-67D803C1D0B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

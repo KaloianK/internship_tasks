@@ -10,32 +10,40 @@ namespace Recursion
         static void Main(string[] args)
         {
 
-            /* 1 Console.Write("n = ");
+             Console.Write("n = ");
             int n = int.Parse(Console.ReadLine());
-            Console.WriteLine("{0}! = {1}", n, Factorial(n));*/
+            Console.WriteLine("{0}! = {1}", n, Factorial(n));
 
 
 
-            Console.Write("N = ");
-            numberOfLoops = int.Parse(Console.ReadLine());
-            Console.Write("K = ");
-            numberOfIterations = int.Parse(Console.ReadLine());
-            loops = new int[numberOfLoops];
+             Console.Write("N = ");
+             numberOfLoops = int.Parse(Console.ReadLine());
+             Console.Write("K = ");
+             numberOfIterations = int.Parse(Console.ReadLine());
+             loops = new int[numberOfLoops];
 
-            NestedLoops(0);
+             NestedLoops(0);
+
+          Console.Write("n = ");
+            int num = int.Parse(Console.ReadLine());
+            Console.WriteLine("Fib({0}) = {1}", num, Fib(num));
+        
+
+
+
 
 
         }
-        /* 1 static decimal Factorial(int n)
+         static decimal Factorial(int n)
         {
             if(n == 0)
             {
                 return 1;
             }
             return n * Factorial(n - 1);
-        }*/
+        }
 
-        static void NestedLoops(int currentLoop)
+         static void NestedLoops(int currentLoop)
         {
             if (currentLoop == numberOfLoops)
             {
@@ -58,5 +66,25 @@ namespace Recursion
             }
             Console.WriteLine();
         }
+
+
+        static long Fib(int n)
+        {
+            long fibNumber = 1;
+            long fibNumberMinus1 = 1;
+            long fibNumberMinus2 = 1;
+            for (int i = 2; i < n; i++)
+            {
+                fibNumber = fibNumberMinus1 + fibNumberMinus2;
+                fibNumberMinus2 = fibNumberMinus1;
+                fibNumberMinus1 = fibNumber;
+            }
+            return fibNumber;
+
+        }
+
+
+
+
     }
 }

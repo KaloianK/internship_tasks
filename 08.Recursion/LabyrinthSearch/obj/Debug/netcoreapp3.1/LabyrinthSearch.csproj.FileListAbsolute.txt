@@ -1,0 +1,13 @@
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\LabyrinthSearch\bin\Debug\netcoreapp3.1\LabyrinthSearch.exe
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\LabyrinthSearch\bin\Debug\netcoreapp3.1\LabyrinthSearch.deps.json
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\LabyrinthSearch\bin\Debug\netcoreapp3.1\LabyrinthSearch.runtimeconfig.json
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\LabyrinthSearch\bin\Debug\netcoreapp3.1\LabyrinthSearch.runtimeconfig.dev.json
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\LabyrinthSearch\bin\Debug\netcoreapp3.1\LabyrinthSearch.dll
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\LabyrinthSearch\bin\Debug\netcoreapp3.1\LabyrinthSearch.pdb
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\LabyrinthSearch\obj\Debug\netcoreapp3.1\LabyrinthSearch.csprojAssemblyReference.cache
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\LabyrinthSearch\obj\Debug\netcoreapp3.1\LabyrinthSearch.AssemblyInfoInputs.cache
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\LabyrinthSearch\obj\Debug\netcoreapp3.1\LabyrinthSearch.AssemblyInfo.cs
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\LabyrinthSearch\obj\Debug\netcoreapp3.1\LabyrinthSearch.csproj.CoreCompileInputs.cache
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\LabyrinthSearch\obj\Debug\netcoreapp3.1\LabyrinthSearch.dll
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\LabyrinthSearch\obj\Debug\netcoreapp3.1\LabyrinthSearch.pdb
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\LabyrinthSearch\obj\Debug\netcoreapp3.1\LabyrinthSearch.genruntimeconfig.cache
