@@ -79,7 +79,7 @@ namespace StringifyNumbers
             {
                 result = "One Thousand!";
             }
-            else if (number > 1000)
+            else if (number > 1000 || number < 0)
             {
                 result = "Number out of reach!  :(";
             }         

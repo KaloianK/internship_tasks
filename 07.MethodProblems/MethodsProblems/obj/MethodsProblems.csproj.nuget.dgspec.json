@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\Desktop\\WorkDayz\\07.MethodProblems\\MethodsProblems\\MethodsProblems.csproj": {}
+    "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\07.MethodProblems\\MethodsProblems\\MethodsProblems.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\Desktop\\WorkDayz\\07.MethodProblems\\MethodsProblems\\MethodsProblems.csproj": {
+    "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\07.MethodProblems\\MethodsProblems\\MethodsProblems.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\WorkDayz\\07.MethodProblems\\MethodsProblems\\MethodsProblems.csproj",
+        "projectUniqueName": "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\07.MethodProblems\\MethodsProblems\\MethodsProblems.csproj",
         "projectName": "MethodsProblems",
-        "projectPath": "C:\\Users\\Administrator\\Desktop\\WorkDayz\\07.MethodProblems\\MethodsProblems\\MethodsProblems.csproj",
+        "projectPath": "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\07.MethodProblems\\MethodsProblems\\MethodsProblems.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\Desktop\\WorkDayz\\07.MethodProblems\\MethodsProblems\\obj\\",
+        "outputPath": "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\07.MethodProblems\\MethodsProblems\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

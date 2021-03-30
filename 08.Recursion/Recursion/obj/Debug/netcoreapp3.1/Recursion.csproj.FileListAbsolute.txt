@@ -1,0 +1,13 @@
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\Recursion\bin\Debug\netcoreapp3.1\Recursion.exe
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\Recursion\bin\Debug\netcoreapp3.1\Recursion.deps.json
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\Recursion\bin\Debug\netcoreapp3.1\Recursion.runtimeconfig.json
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\Recursion\bin\Debug\netcoreapp3.1\Recursion.runtimeconfig.dev.json
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\Recursion\bin\Debug\netcoreapp3.1\Recursion.dll
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\Recursion\bin\Debug\netcoreapp3.1\Recursion.pdb
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\Recursion\obj\Debug\netcoreapp3.1\Recursion.csprojAssemblyReference.cache
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\Recursion\obj\Debug\netcoreapp3.1\Recursion.AssemblyInfoInputs.cache
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\Recursion\obj\Debug\netcoreapp3.1\Recursion.AssemblyInfo.cs
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\Recursion\obj\Debug\netcoreapp3.1\Recursion.csproj.CoreCompileInputs.cache
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\Recursion\obj\Debug\netcoreapp3.1\Recursion.dll
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\Recursion\obj\Debug\netcoreapp3.1\Recursion.pdb
+\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\08.Recursion\Recursion\obj\Debug\netcoreapp3.1\Recursion.genruntimeconfig.cache

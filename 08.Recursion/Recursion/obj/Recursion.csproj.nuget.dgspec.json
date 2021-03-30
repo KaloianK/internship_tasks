@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\07.MethodProblems\\StringifyNumbers\\StringifyNumbers.csproj": {}
+    "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\08.Recursion\\Recursion\\Recursion.csproj": {}
   },
   "projects": {
-    "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\07.MethodProblems\\StringifyNumbers\\StringifyNumbers.csproj": {
+    "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\08.Recursion\\Recursion\\Recursion.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\07.MethodProblems\\StringifyNumbers\\StringifyNumbers.csproj",
-        "projectName": "StringifyNumbers",
-        "projectPath": "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\07.MethodProblems\\StringifyNumbers\\StringifyNumbers.csproj",
+        "projectUniqueName": "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\08.Recursion\\Recursion\\Recursion.csproj",
+        "projectName": "Recursion",
+        "projectPath": "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\08.Recursion\\Recursion\\Recursion.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\07.MethodProblems\\StringifyNumbers\\obj\\",
+        "outputPath": "\\\\files\\Public\\Transfer\\Kaloian Karaivanov\\Internship\\internship_tasks\\08.Recursion\\Recursion\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
