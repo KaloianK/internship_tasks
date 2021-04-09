@@ -10,100 +10,79 @@ namespace StringifyEquation
 {
     class StringifyEquationRecursion
     {
-        static string OpeningBracket = '('.ToString();
-        static string ClosingBracket = ')'.ToString();
-        static string CurrentElement;
-        static string NextElement;
-        static string EmptySpace = ' '.ToString();
+
         // static int Index = 0;
-        static string[] ArrayForSubSums;
-        static int Sum;
-        static string allOperands = "*, /, +, -";
+        static string[] arrayOfNumbersAndOperators;
+        static int Sum = 0;
         static string equation;
         static int i = 0;
-        static void CalculateSumsInEquation(string equation, int index)
+        static int Index = 0;       
+        static int[] arrayForSubSums;
+        static int k = 0;
+        static void CalculateSumsInEquation(string equation)
         {
 
-            while (index < equation.Length - 1)
+            while (Index < equation.Length - 1)
             {
-                if (String.Equals(equation[index], '('))
+
+                if (String.Equals(equation[Index], '('))
                 {
-                    Sum += CalculateSumBetweenBrackets(index);
+                    Sum += CalculateSumBetweenBrackets(Index).Sum;
                 }
-                index++;
-                //if (index + 1 >= equation.Length)
-                //{
-                //    return;
-                //}
-                //CurrentElement = equation[index].ToString();
-                //NextElement = equation[index + 1].ToString();
-
-                //if (String.Equals(CurrentElement, EmptySpace))
-                //{
-                //    CalculateSumsInEquation(equation, index + 1);
-                //    return;
-                //}
-
-                //if (!String.Equals(NextElement, ClosingBracket))
-                //{
-                //    if (String.Equals(CurrentElement, OpeningBracket) && !String.Equals(NextElement, OpeningBracket))
-                //    {
-                //        ArrayForSubSums[index] = NextElement;
-                //        // SumBetweenTwoBrackets(equation, index);
-                //        SumArrayBetweenTwoBrackets(ArrayForSubSums, 0);
-
-
-
-                //    }
-                //    else
-                //    {
-                //        CalculateSumsInEquation(equation, index + 1);
-                //        return;
-                //    }
-
-
-                //}
-                //if (String.Equals(NextElement, ClosingBracket))
-                //{
-
-                //    //index += 1;
-                //    //CalculateSumsInEquation(equation, index);
-                //    return;
-
-                //}
-
-                //return;
+                Index++;
             }
             Console.Write(Sum);
         }
-        static int CalculateSumBetweenBrackets(int index)
+        static SumAndIndexOfRecursion CalculateSumBetweenBrackets(int index)
         {
+
             //print opening bracket
-            Console.Write(equation[index]);
+            // Console.Write(equation[index]);
             //Increase Index
             index++;
             //Check for Opening Bracket
+            SumAndIndexOfRecursion a = new SumAndIndexOfRecursion(Sum, index);
+
+
             if (String.Equals(equation[index], '('))
             {
-                CalculateSumBetweenBrackets(index + 1);
+                Console.Write("(");
+                a = CalculateSumBetweenBrackets(index);
+                index = a.index;
+
             }
             //If true --> call recursion
             //Check for Closing Bracket
+
             if (String.Equals(equation[index], ')'))
             {
-                SumArrayBetweenTwoBrackets(ArrayForSubSums);
+                //SumArrayBetweenTwoBrackets(arrayOfNumbersAndOperators);
+                Console.Write(a.Sum);
                 Console.Write(")");
-                return index;
+                return a;
 
             }
             //if true--->print and return
 
             //Add current symbol to an array
-            ArrayForSubSums[i] = equation[index].ToString();
-            i++;
+            index = PushNumbersAndOperatorsInArray(arrayOfNumbersAndOperators, index);
             //Call Another Method
+            int newSum = SumArrayBetweenTwoBrackets(arrayOfNumbersAndOperators);
+            SumAndIndexOfRecursion getSumAndIndex = new SumAndIndexOfRecursion(newSum, index);
+            return getSumAndIndex;
+        }
 
-            return SumArrayBetweenTwoBrackets(ArrayForSubSums);
+        static int PushNumbersAndOperatorsInArray(string[] arrayOfNumbersAndOperators, int index)
+        {
+            while (index < arrayOfNumbersAndOperators.Length && i < arrayOfNumbersAndOperators.Length && !String.Equals(equation[index], ')'))
+            {
+                arrayOfNumbersAndOperators[i] = equation[index].ToString();
+                i++;
+                index++;
+
+            }
+            i = 0;
+            return index;
         }
 
 
@@ -112,7 +91,7 @@ namespace StringifyEquation
             int leftNumber = 0;
             int rightNumber = 0;
             int currentSum = 0;
-            int lastRightNumber = 0;
+           
             for (int i = 1; i < arrayWithSubSums.Length; i += 2)
             {
 
@@ -121,38 +100,37 @@ namespace StringifyEquation
                     int.TryParse(arrayWithSubSums[i - 1], out leftNumber);
                     int.TryParse(arrayWithSubSums[i + 1], out rightNumber);
                     currentSum = leftNumber * rightNumber;
-                    // Console.Write(Sum);
-
                 }
                 if (arrayWithSubSums[i] == "/")
                 {
                     int.TryParse(arrayWithSubSums[i - 1], out leftNumber);
                     int.TryParse(arrayWithSubSums[i + 1], out rightNumber);
                     currentSum = leftNumber / rightNumber;
-                    // Console.Write(Sum);
-
                 }
                 if (arrayWithSubSums[i] == "+")
                 {
                     int.TryParse(arrayWithSubSums[i - 1], out leftNumber);
                     int.TryParse(arrayWithSubSums[i + 1], out rightNumber);
                     currentSum = leftNumber + rightNumber;
-                   
-                    //Console.Write(Sum);
-
                 }
                 if (arrayWithSubSums[i] == "-")
                 {
                     int.TryParse(arrayWithSubSums[i - 1], out leftNumber);
                     int.TryParse(arrayWithSubSums[i + 1], out rightNumber);
-                    currentSum = leftNumber - rightNumber;
-                    //Console.Write(Sum);
-
+                    currentSum = leftNumber - rightNumber;                   
                 }
-                Sum += currentSum - lastRightNumber;
-                lastRightNumber = rightNumber;
+
             }
-            return Sum;  
+            SubSumsInArray(arrayForSubSums, currentSum, k);
+            currentSum = 0;
+            Array.Clear(arrayOfNumbersAndOperators, 0, arrayOfNumbersAndOperators.Length);
+            return arrayForSubSums[i];
+        }
+        static int SubSumsInArray(int[] arrayForSubSums,int currentSum, int k)
+        {
+            arrayForSubSums[i] = currentSum;
+            k++;
+            return currentSum;
         }
 
 
@@ -160,8 +138,11 @@ namespace StringifyEquation
         {
             Console.Write("Enter the equation you want to stringify and calculate: ");
             equation = Console.ReadLine();
-            ArrayForSubSums = new string[equation.Length];
-            CalculateSumsInEquation(equation, 0);
+            arrayOfNumbersAndOperators = new string[equation.Length];
+            arrayForSubSums = new int[equation.Length];
+            //SumAndIndexOfRecursion getSumAndIndex = new SumAndIndexOfRecursion(Sum, Index);
+            CalculateSumsInEquation(equation);
+            // (2+2)*(((3+4)+1)/2)
         }
     }
 }
