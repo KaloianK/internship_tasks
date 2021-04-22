@@ -10,11 +10,10 @@ namespace DrinkBook
         private int priceOfWhiskey;
         private int priceOfVodka;
         private int capacity;
-        private int countOfPeople = 0;
+
         private string musicPlayed;
-        
-        private const int MAX_CAPACITY_HouseClub = int.MaxValue;
-        private const int MAX_CAPACITY_RockClub = 30;
+
+        List<User> listOfUsers = new List<User>();
 
         public string MusicPlayed
         {
@@ -96,37 +95,29 @@ namespace DrinkBook
         public virtual bool CanUserEnterTheClub(User user)
         {
             int priceOfAlcohol = ConvertDrinkableAlcoholToMoney(user.DrinkableWhiskeys, user.DrinkableVodkas);
-            
+
 
             if (user.Budget < priceOfAlcohol)
             {
                 return false;
             }
-            else if (this.capacity == this.countOfPeople)
+            else if (this.listOfUsers.Count >= this.capacity)
             {
                 return false;
             }
-            else if (user.PreferredMusic != "Everything" || this.musicPlayed != user.PreferredMusic )
+            else if (!(user.PreferredMusic == Constants.MUSIC_EVERYTHING || this.musicPlayed == user.PreferredMusic))
             {
                 return false;
             }
-            countOfPeople++;
+
             return true;
         }
-
-
-        //FolkClub folkClub = new FolkClub();
-
-        //HouseClub houseClub = new HouseClub();
-
-        //RockClub rockClub = new RockClub("Rockarolla", 40, 20, 100);
 
         public int ConvertDrinkableAlcoholToMoney(int drinkableWhiskeys, int drinkableVodkas)
         {
             int fullPriceForAlcohol = 0;
             int currentPriceOfWhiskey = 0;
             int currentPriceOfVodka = 0;
-
 
             currentPriceOfWhiskey = this.PriceOfWhiskey * drinkableWhiskeys;
             currentPriceOfVodka = this.PriceOfVodka * drinkableVodkas;
@@ -136,7 +127,56 @@ namespace DrinkBook
             return fullPriceForAlcohol;
         }
 
+        public List<User> ListOfUsers
+        {
+            get
+            {
+                return listOfUsers;
+            }
+            set
+            {
+                listOfUsers = value;
+            }
+        }
 
+        public List<User> AddUserToClub(User user)
+        {
+            if (CanUserEnterTheClub(user) == true)
+            {
+                listOfUsers.Add(user);
+            }
+            return listOfUsers;
+        }
+
+        public List<User> RemoveUserFromClub(User user)
+        {
+            listOfUsers.Remove(user);
+            return listOfUsers;
+        }
+
+        public void PrintUserNamesInClubs()
+        {
+            StringBuilder userNamesInClubs = new StringBuilder();
+            string[] userNamesArr = new string[listOfUsers.Count];
+            userNamesInClubs.Append(this.name + ": ");
+
+            for (int i = 0; i < this.listOfUsers.Count; i++)
+            {
+                userNamesArr[i] = this.listOfUsers[i].Name;
+            }
+
+            if (listOfUsers.Count == 0)
+            {
+                userNamesInClubs.Append("The Club is empty");
+            }
+            else
+            {
+                userNamesInClubs.AppendJoin(".|.", userNamesArr);
+            }
+
+            Console.WriteLine(userNamesInClubs);
+
+        }
 
 
 

@@ -7,29 +7,16 @@ namespace DrinkBook
     public class HouseClub : Club
     {
         private int numberOfDjs;
-        private const int MAX_CAPACITY_HouseClub = int.MaxValue;
-
-     
 
         public HouseClub(string name, int priceOfWHiskey, int priceOfVodka, int capacity, int numberOfDjs) : base(name, priceOfWHiskey, priceOfVodka, capacity)
         {
             this.numberOfDjs = numberOfDjs;
-            this.MusicPlayed = "House";
+            this.MusicPlayed = Constants.MUSIC_HOUSE;
         }
 
         public override bool CanUserEnterTheClub(User user)
         {
-            if (user.Age < 18)
-            {
-                return false;
-            }
-
-            if (user.PreferredMusic == "Folk")
-            {
-                return false;
-            }
-
-            if (Capacity >= MAX_CAPACITY_HouseClub)
+            if (user.Age < 18 || user.PreferredMusic == Constants.MUSIC_HOUSE || this.ListOfUsers.Count >= Constants.MAX_CAPACITY_HouseClub)
             {
                 return false;
             }
@@ -37,7 +24,7 @@ namespace DrinkBook
             base.CanUserEnterTheClub(user);
 
             return true;
-            
+
         }
 
     }

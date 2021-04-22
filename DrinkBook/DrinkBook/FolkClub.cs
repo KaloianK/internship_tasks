@@ -8,14 +8,11 @@ namespace DrinkBook
     public class FolkClub : Club
     {
         private string singer;
-        private const int MAX_CAPACITY_FolkClub = 70;
-
-
 
         public FolkClub(string name, int priceOfWhiskey, int priceOfVodka, int capacity, string singer) : base(name, priceOfWhiskey, priceOfVodka, capacity)
         {
+            this.MusicPlayed = Constants.MUSIC_FOLK;
             this.singer = singer;
-            this.MusicPlayed = "Folk";
         }
 
         public override bool CanUserEnterTheClub(User user)
@@ -25,25 +22,18 @@ namespace DrinkBook
                 user.Budget -= 20;
             }
 
-            if (user.PreferredMusic == "Rock")
+            if (user.PreferredMusic == Constants.MUSIC_FOLK || this.ListOfUsers.Count >= Constants.MAX_CAPACITY_FolkClub)
             {
                 return false;
             }
 
-            if (Capacity >= MAX_CAPACITY_FolkClub)
+
+
+            if (base.CanUserEnterTheClub(user) == false)
             {
                 return false;
             }
-
-            base.CanUserEnterTheClub(user);
-
-           
-            return true;
-            
+            else return true;
         }
-        //public bool AddUserToFolkClub( clubGod)
-        //{
-        //    if )
-        //}
     }
 }

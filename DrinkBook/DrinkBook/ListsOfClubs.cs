@@ -8,9 +8,7 @@ namespace DrinkBook
     {
         private const int startingSize = 4;
 
-
         List<Club> listOfClubs = new List<Club>();
-
 
         public ListsOfClubs()
         {
@@ -64,25 +62,15 @@ namespace DrinkBook
             bool canWeAddTheUserInTheClub = false;
 
             int indexOfClub = GetClubIndexByName(clubName);
+
             if (indexOfClub >= 0)
             {
                 Club club = this.listOfClubs[indexOfClub];
-                
+
                 bool canUserEnter = club.CanUserEnterTheClub(user);
             }
-                //  listOfClubs.IndexOf()
-                //{
-                //1. Check if user's age is above 18. If false budget -=20 return canWeAddTheClubGodInTheFolkClub else check if capacity > maxCapacity ->
-                //-> if true throw exception"THe club's limit is full you cant enter" return canWeAddTheClubGodInTheFolkClub-->
-                //-->else Check if user's budget is lower than PriceOfWhiskey + PriceOfVodka.--->
-                //--->If true throw exception "Your budget is not enought to drink this many drinks! Try less drinks or higher budget!"---->
-                //----> else return canWeAddTheClubGodInTheFolkClub = true;
-                // }
-                // 
-                return canWeAddTheUserInTheClub;
 
-
-
+            return canWeAddTheUserInTheClub;
         }
     }
 }

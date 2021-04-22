@@ -7,27 +7,14 @@ namespace DrinkBook
 
     public class RockClub : Club
     {
-        private const int MAX_CAPACITY_RockClub = 30;
-
-       
         public RockClub(string name, int priceOfWhiskey, int priceOfVodka, int capacity) : base(name, priceOfWhiskey, priceOfVodka, capacity)
         {
-            this.MusicPlayed = "Rock";
+            this.MusicPlayed = Constants.MUSIC_ROCK;
         }
 
         public override bool CanUserEnterTheClub(User user)
         {
-            if (user.Age < 18)
-            {
-                user.Budget -= 20;
-            }
-
-            if (user.PreferredMusic == "Rock")
-            {
-                return false;
-            }
-
-            if (Capacity >= MAX_CAPACITY_RockClub)
+            if (user.Age < 18 || user.PreferredMusic == Constants.MUSIC_ROCK || this.ListOfUsers.Count >= Constants.MAX_CAPACITY_RockClub)
             {
                 return false;
             }
