@@ -22,7 +22,7 @@ namespace DrinkBook
 
         public override bool CanUserEnter(User user)
         {
-            if (user.Age < 18 || user.PreferredMusic == Constants.MUSIC_HOUSE || this.ListOfUsers.Count >= Constants.MAX_CAPACITY_HOUSECLUB)
+            if (user.Age < 18 || user.PreferredMusic == Constants.MUSIC_FOLK || this.ListOfUsers.Count >= Constants.MAX_CAPACITY_HOUSECLUB)
             {
                 return false;
             }

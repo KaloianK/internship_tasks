@@ -28,7 +28,7 @@ namespace DrinkBook
                 user.Budget -= 20;
             }
 
-            if (user.PreferredMusic == Constants.MUSIC_FOLK || this.ListOfUsers.Count >= Constants.MAX_CAPACITY_FOLKCLUB)
+            if (user.PreferredMusic == Constants.MUSIC_ROCK || this.ListOfUsers.Count >= Constants.MAX_CAPACITY_FOLKCLUB)
             {
                 return false;
             }

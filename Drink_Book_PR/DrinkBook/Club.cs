@@ -6,25 +6,25 @@ namespace DrinkBook
 {
     public abstract class Club
     {
-        private string name;
-        private int whiskeyPrice;
-        private int vodkaPrice;
-        private int capacity;
-
-        private string musicPlayed;
-
+        public string Name { get; set; }
+        public int Capacity { get; set; }
+        public string MusicPlayed { get; set; }
+        public int whiskeyPrice;
+        public int vodkaPrice;
         private List<User> listOfUsers = new List<User>();
 
-        public string MusicPlayed
+        public Club(string name, int whiskeyPrice, int vodkaPrice, int capacity)
         {
-            get => this.musicPlayed;
-            set => this.musicPlayed = value;
+            this.Name = name;
+            this.WhiskeyPrice = whiskeyPrice;
+            this.VodkaPrice = vodkaPrice;
+            this.Capacity = capacity;
         }
 
-        public string Name
+        public List<User> ListOfUsers
         {
-            get => this.name;
-            set => this.name = value;
+            get => this.listOfUsers;
+            set => this.listOfUsers = value;
         }
 
         public int WhiskeyPrice
@@ -61,41 +61,19 @@ namespace DrinkBook
             }
         }
 
-        public int Capacity
-        {
-            get => this.capacity;
-            set => this.capacity = value;
-        }
-
-        public Club()
-        {
-            this.name = "";
-            this.whiskeyPrice = 0;
-            this.vodkaPrice = 0;
-            this.capacity = 0;
-        }
-
-        public Club(string name, int whiskeyPrice, int vodkaPrice, int capacity)
-        {
-            this.Name = name;
-            this.WhiskeyPrice = whiskeyPrice;
-            this.VodkaPrice = vodkaPrice;
-            this.Capacity = capacity;
-        }
-
         public virtual bool CanUserEnter(User user)
         {
-            int priceOfAlcohol = CostOfAlcoholToDrink(user.WhiskeysToDrink, user.VodkasToDrink);
+            decimal priceOfAlcohol = CostOfAlcoholToDrink(user.WhiskeysToDrink, user.VodkasToDrink);
 
             if (user.Budget < priceOfAlcohol)
             {
                 return false;
             }
-            else if (this.listOfUsers.Count >= this.capacity)
+            else if (this.ListOfUsers.Count >= this.Capacity)
             {
                 return false;
             }
-            else if (!(user.PreferredMusic == Constants.MUSIC_EVERYTHING || this.musicPlayed == user.PreferredMusic))
+            else if (!(user.PreferredMusic == Constants.MUSIC_EVERYTHING || this.MusicPlayed == user.PreferredMusic))
             {
                 return false;
             }
@@ -103,49 +81,42 @@ namespace DrinkBook
             return true;
         }
 
-        public int CostOfAlcoholToDrink(int whiskeysToDrink, int vodkasToDrink)
+        public decimal CostOfAlcoholToDrink(int whiskeysToDrink, int vodkasToDrink)
         {
-            int costOfAlcohol = 0;
-            int convertedWhiskeyPrice = 0;
-            int convertedVodkaPrice = 0;
+            decimal convertedWhiskeyPrice = 0;
+            decimal convertedVodkaPrice = 0;
 
             convertedWhiskeyPrice = this.WhiskeyPrice * whiskeysToDrink;
             convertedVodkaPrice = this.VodkaPrice * vodkasToDrink;
 
-            return costOfAlcohol = convertedVodkaPrice + convertedWhiskeyPrice;
-        }
-
-        public List<User> ListOfUsers
-        {
-            get => this.listOfUsers;
-            set => this.listOfUsers = value;
-
+            return convertedVodkaPrice + convertedWhiskeyPrice;
         }
 
         public List<User> AddUserToClub(User user)
         {
             if (CanUserEnter(user))
             {
-                this.listOfUsers.Add(user);
+                this.ListOfUsers.Add(user);
             }
-            return this.listOfUsers;
+
+            return this.ListOfUsers;
         }
 
         public List<User> RemoveFromClub(User user)
         {
-            this.listOfUsers.Remove(user);
-            return this.listOfUsers;
+            this.ListOfUsers.Remove(user);
+            return this.ListOfUsers;
         }
 
         public void PrintUserNamesInClubs()
         {
             StringBuilder userNamesInClubs = new StringBuilder();
             string[] userNamesArr = new string[listOfUsers.Count];
-            userNamesInClubs.Append(this.name + ": ");
+            userNamesInClubs.Append(this.Name + ": ");
 
-            for (int i = 0; i < this.listOfUsers.Count; i++)
+            for (int i = 0; i < this.ListOfUsers.Count; i++)
             {
-                userNamesArr[i] = this.listOfUsers[i].Name;
+                userNamesArr[i] = this.ListOfUsers[i].Name;
             }
 
             if (listOfUsers.Count == 0)

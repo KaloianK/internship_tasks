@@ -21,13 +21,13 @@ namespace DrinkBook
 
             for (int i = 0; i < this.listOfClubs.Count; i++)
             {
-                clubNames.Append(this.listOfClubs[i].Name + ", ");
+                clubNames.AppendJoin(',', this.listOfClubs[i].Name);
             }
 
             return clubNames.ToString();
         }
 
-        public void CheckAllClubsPrices()
+        public void AlcoholPrices()
         {
             for (int i = 0; i < this.listOfClubs.Count; i++)
             {
@@ -47,22 +47,6 @@ namespace DrinkBook
             }
 
             return -1;
-        }
-
-        public bool AddUserToClub(User user, string clubName)
-        {
-            bool canUserEnter = false;
-
-            int indexOfClub = GetClubIndexByName(clubName);
-
-            if (indexOfClub >= 0)
-            {
-                Club club = this.listOfClubs[indexOfClub];
-
-                canUserEnter = club.CanUserEnter(user);
-            }
-
-            return canUserEnter;
         }
     }
 }
