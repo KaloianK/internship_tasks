@@ -6,26 +6,28 @@ namespace DrinkBook
 {
     public class HouseClub : Club
     {
-        private int numberOfDjs;
+        private int numberOfDJs;
 
-        public HouseClub(string name, int priceOfWHiskey, int priceOfVodka, int capacity, int numberOfDjs) : base(name, priceOfWHiskey, priceOfVodka, capacity)
+        public int NumberOfDJs
         {
-            this.numberOfDjs = numberOfDjs;
+            get => this.numberOfDJs;
+            set => this.numberOfDJs = value;
+        }
+
+        public HouseClub(string name, int whiskeyPrice, int vodkaPrice, int capacity, int numberOfDjs) : base(name, whiskeyPrice, vodkaPrice, capacity)
+        {
+            this.NumberOfDJs = numberOfDjs;
             this.MusicPlayed = Constants.MUSIC_HOUSE;
         }
 
-        public override bool CanUserEnterTheClub(User user)
+        public override bool CanUserEnter(User user)
         {
-            if (user.Age < 18 || user.PreferredMusic == Constants.MUSIC_HOUSE || this.ListOfUsers.Count >= Constants.MAX_CAPACITY_HouseClub)
+            if (user.Age < 18 || user.PreferredMusic == Constants.MUSIC_HOUSE || this.ListOfUsers.Count >= Constants.MAX_CAPACITY_HOUSECLUB)
             {
                 return false;
             }
 
-            base.CanUserEnterTheClub(user);
-
-            return true;
-
+            return base.CanUserEnter(user);
         }
-
     }
 }

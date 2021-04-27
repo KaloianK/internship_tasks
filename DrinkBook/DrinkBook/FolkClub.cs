@@ -9,31 +9,31 @@ namespace DrinkBook
     {
         private string singer;
 
-        public FolkClub(string name, int priceOfWhiskey, int priceOfVodka, int capacity, string singer) : base(name, priceOfWhiskey, priceOfVodka, capacity)
+        public string Singer
         {
-            this.MusicPlayed = Constants.MUSIC_FOLK;
-            this.singer = singer;
+            get => this.singer;
+            set => this.singer = value;
         }
 
-        public override bool CanUserEnterTheClub(User user)
+        public FolkClub(string name, int whiskeyPrice, int vodkaPrice, int capacity, string singer) : base(name, whiskeyPrice, vodkaPrice, capacity)
+        {
+            this.MusicPlayed = Constants.MUSIC_FOLK;
+            this.Singer = singer;
+        }
+
+        public override bool CanUserEnter(User user)
         {
             if (user.Age < 18)
             {
                 user.Budget -= 20;
             }
 
-            if (user.PreferredMusic == Constants.MUSIC_FOLK || this.ListOfUsers.Count >= Constants.MAX_CAPACITY_FolkClub)
+            if (user.PreferredMusic == Constants.MUSIC_FOLK || this.ListOfUsers.Count >= Constants.MAX_CAPACITY_FOLKCLUB)
             {
                 return false;
             }
 
-
-
-            if (base.CanUserEnterTheClub(user) == false)
-            {
-                return false;
-            }
-            else return true;
+            return base.CanUserEnter(user);          
         }
     }
 }

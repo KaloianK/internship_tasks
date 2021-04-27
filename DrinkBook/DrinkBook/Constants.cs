@@ -4,11 +4,11 @@ using System.Text;
 
 namespace DrinkBook
 {
-    class Constants
+   public class Constants
     {
-        public const int MAX_CAPACITY_FolkClub = 70;
-        public const int MAX_CAPACITY_RockClub = 30;
-        public const int MAX_CAPACITY_HouseClub = int.MaxValue;
+        public const int MAX_CAPACITY_FOLKCLUB = 70;
+        public const int MAX_CAPACITY_ROCKCLUB = 30;
+        public const int MAX_CAPACITY_HOUSECLUB = int.MaxValue;
         public const string MUSIC_FOLK = "Folk";
         public const string MUSIC_HOUSE = "House";
         public const string MUSIC_ROCK = "Rock";

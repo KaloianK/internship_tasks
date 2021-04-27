@@ -7,95 +7,85 @@ namespace DrinkBook
     public abstract class Club
     {
         private string name;
-        private int priceOfWhiskey;
-        private int priceOfVodka;
+        private int whiskeyPrice;
+        private int vodkaPrice;
         private int capacity;
 
         private string musicPlayed;
 
-        List<User> listOfUsers = new List<User>();
+        private List<User> listOfUsers = new List<User>();
 
         public string MusicPlayed
         {
-            get
-            {
-                return musicPlayed;
-            }
-            set
-            {
-                musicPlayed = value;
-            }
+            get => this.musicPlayed;
+            set => this.musicPlayed = value;
         }
 
         public string Name
         {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
+            get => this.name;
+            set => this.name = value;
         }
 
-        public int PriceOfWhiskey
+        public int WhiskeyPrice
         {
             get
             {
-                return priceOfWhiskey;
+                return this.whiskeyPrice;
             }
             set
             {
-                priceOfWhiskey = value;
+                this.whiskeyPrice = value;
+
+                if (this.whiskeyPrice <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("The price of whiskey can not be negative number or 0 !");
+                }
             }
         }
 
-        public int PriceOfVodka
+        public int VodkaPrice
         {
             get
             {
-                return priceOfVodka;
+                return this.vodkaPrice;
             }
             set
             {
-                priceOfVodka = value;
+                this.vodkaPrice = value;
+
+                if (this.vodkaPrice <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("The price of vodka can not be negative number or 0 !");
+                }
             }
         }
 
         public int Capacity
         {
-            get
-            {
-                return capacity;
-            }
-            set
-            {
-                capacity = value;
-            }
+            get => this.capacity;
+            set => this.capacity = value;
         }
 
         public Club()
         {
             this.name = "";
-            this.priceOfWhiskey = 0;
-            this.priceOfVodka = 0;
+            this.whiskeyPrice = 0;
+            this.vodkaPrice = 0;
             this.capacity = 0;
-
         }
 
-        public Club(string name, int priceOfWhiskey, int priceOfVodka, int capacity)
+        public Club(string name, int whiskeyPrice, int vodkaPrice, int capacity)
         {
-            this.name = name;
-            this.priceOfWhiskey = priceOfWhiskey;
-            this.priceOfVodka = priceOfVodka;
-            this.capacity = capacity;
+            this.Name = name;
+            this.WhiskeyPrice = whiskeyPrice;
+            this.VodkaPrice = vodkaPrice;
+            this.Capacity = capacity;
         }
 
-        public virtual bool CanUserEnterTheClub(User user)
+        public virtual bool CanUserEnter(User user)
         {
-            int priceOfAlcohol = ConvertDrinkableAlcoholToMoney(user.DrinkableWhiskeys, user.DrinkableVodkas);
-
+            int priceOfAlcohol = CostOfAlcoholToDrink(user.WhiskeysToDrink, user.VodkasToDrink);
 
             if (user.Budget < priceOfAlcohol)
             {
@@ -113,45 +103,38 @@ namespace DrinkBook
             return true;
         }
 
-        public int ConvertDrinkableAlcoholToMoney(int drinkableWhiskeys, int drinkableVodkas)
+        public int CostOfAlcoholToDrink(int whiskeysToDrink, int vodkasToDrink)
         {
-            int fullPriceForAlcohol = 0;
-            int currentPriceOfWhiskey = 0;
-            int currentPriceOfVodka = 0;
+            int costOfAlcohol = 0;
+            int convertedWhiskeyPrice = 0;
+            int convertedVodkaPrice = 0;
 
-            currentPriceOfWhiskey = this.PriceOfWhiskey * drinkableWhiskeys;
-            currentPriceOfVodka = this.PriceOfVodka * drinkableVodkas;
+            convertedWhiskeyPrice = this.WhiskeyPrice * whiskeysToDrink;
+            convertedVodkaPrice = this.VodkaPrice * vodkasToDrink;
 
-            fullPriceForAlcohol = currentPriceOfVodka + currentPriceOfWhiskey;
-
-            return fullPriceForAlcohol;
+            return costOfAlcohol = convertedVodkaPrice + convertedWhiskeyPrice;
         }
 
         public List<User> ListOfUsers
         {
-            get
-            {
-                return listOfUsers;
-            }
-            set
-            {
-                listOfUsers = value;
-            }
+            get => this.listOfUsers;
+            set => this.listOfUsers = value;
+
         }
 
         public List<User> AddUserToClub(User user)
         {
-            if (CanUserEnterTheClub(user) == true)
+            if (CanUserEnter(user))
             {
-                listOfUsers.Add(user);
+                this.listOfUsers.Add(user);
             }
-            return listOfUsers;
+            return this.listOfUsers;
         }
 
-        public List<User> RemoveUserFromClub(User user)
+        public List<User> RemoveFromClub(User user)
         {
-            listOfUsers.Remove(user);
-            return listOfUsers;
+            this.listOfUsers.Remove(user);
+            return this.listOfUsers;
         }
 
         public void PrintUserNamesInClubs()
@@ -175,12 +158,6 @@ namespace DrinkBook
             }
 
             Console.WriteLine(userNamesInClubs);
-
         }
-
-
-
     }
-
-
 }
