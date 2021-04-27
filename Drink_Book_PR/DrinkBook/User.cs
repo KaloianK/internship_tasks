@@ -9,108 +9,65 @@ namespace DrinkBook
         private string name;
         private int age;
         private int budget;
-        private int drinkableWhiskeys;
-        private int drinkableVodkas;
+        private int whiskeysToDrink;
+        private int vodkasToDrink;
         private string preferredMusic;
 
         public string Name
         {
-            get
-            {
-                return name;
-            }
-
-            set
-            {
-                name = value;
-            }
+            get => this.name;
+            set => this.name = value;
         }
 
         public int Age
         {
-            get
-            {
-                return age;
-            }
-
-            set
-            {
-                age = value;
-            }
+            get => this.age;
+            set => this.age = value;
         }
 
         public int Budget
         {
-            get
-            {
-                return budget;
-            }
-
-            set
-            {
-                budget = value;
-            }
+            get => this.budget;
+            set => this.budget = value;
         }
 
-        public int DrinkableWhiskeys
+        public int WhiskeysToDrink
         {
-            get
-            {
-                return drinkableWhiskeys;
-            }
-
-            set
-            {
-                drinkableWhiskeys = value;
-            }
+            get => this.whiskeysToDrink; set => this.whiskeysToDrink = value;
         }
 
-        public int DrinkableVodkas
+        public int VodkasToDrink
         {
-            get
-            {
-                return drinkableVodkas;
-            }
-
-            set
-            {
-                drinkableVodkas = value;
-            }
+            get => this.vodkasToDrink;
+            set => this.vodkasToDrink = value;
         }
 
         public string PreferredMusic
         {
-            get
-            {
-                return preferredMusic;
-            }
-
-            set
-            {
-                preferredMusic = value;
-            }
+            get => this.preferredMusic;
+            set => this.preferredMusic = value;
         }
 
         public User()
         {
-            this.name = "";
-            this.age = 0;
-            this.budget = 0;
-            this.drinkableWhiskeys = 0;
-            this.drinkableVodkas = 0;
-            this.preferredMusic = "";
+            this.Name = "";
+            this.Age = 0;
+            this.Budget = 0;
+            this.WhiskeysToDrink = 0;
+            this.VodkasToDrink = 0;
+            this.PreferredMusic = "";
         }
 
         public User(string name, int age, int budget, int drinkableWhiskeys, int drinkableVodkas, string preferredMusic)
         {
-            this.name = name;
-            this.age = age;
-            this.budget = budget;
-            this.drinkableWhiskeys = drinkableWhiskeys;
-            this.drinkableVodkas = drinkableVodkas;
-            this.preferredMusic = preferredMusic;
+            this.Name = name;
+            this.Age = age;
+            this.Budget = budget;
+            this.WhiskeysToDrink = drinkableWhiskeys;
+            this.VodkasToDrink = drinkableVodkas;
+            this.PreferredMusic = preferredMusic;
         }
 
-       
+
     }
 }

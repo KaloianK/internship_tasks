@@ -4,21 +4,8 @@ namespace DrinkBook
 {
     public class DrinkBook
     {
-        static void Main(string[] args)
-        {
-            //Console.Write("Enter your name: ");
-            //string inputName = Console.ReadLine();
-            //Console.Write("Enter your age: ");
-            //int inputAge = int.Parse(Console.ReadLine());
-            //Console.Write("Enter your budget: ");
-            //int inputBudget = int.Parse(Console.ReadLine());
-            //Console.Write("Enter the amount of Whiskeys you want to drink: ");
-            //int inputDrinkableWhiskeys = int.Parse(Console.ReadLine());
-            //Console.Write("Enter the amount of Vodkas you want to drink: ");
-            //int inputDrinakbleVodkas = int.Parse(Console.ReadLine());
-            //Console.Write("Enter the music you prefer to listen (Folk, Rock, House, Everything): ");
-            //string inputPreferredMusic = Console.ReadLine();
-
+       public static void Main(string[] args)
+        {         
             User clubGod = new User("Boban", 25, 200, 2, 3, "Folk");
             User folkGod = new User("Georji", 24, 180, 3, 4, "House");
             User everythingGod = new User("Koki", 15, 250, 3, 1, "Everything");
@@ -34,19 +21,19 @@ namespace DrinkBook
             HouseClub houseClub = new HouseClub("HousePlace", 45, 10, 110, 3);
             ListsOfClubs listOfClubs = new ListsOfClubs();
 
-            listOfClubs.AddClubToTheList(folkClub);
-            listOfClubs.AddClubToTheList(rockClub);
-            listOfClubs.AddClubToTheList(houseClub);
+            listOfClubs.AddClub(folkClub);
+            listOfClubs.AddClub(rockClub);
+            listOfClubs.AddClub(houseClub);
 
-            folkClub.CanUserEnterTheClub(clubGod); // true
-            folkClub.CanUserEnterTheClub(folkGod); // false
-            houseClub.CanUserEnterTheClub(everythingGod); // false
-            rockClub.CanUserEnterTheClub(rockGod); // false
-            folkClub.CanUserEnterTheClub(folkUser);//true
-            folkClub.CanUserEnterTheClub(userStefan);//true
-            folkClub.CanUserEnterTheClub(userDani);//true
-            houseClub.CanUserEnterTheClub(userDamon);//true
-            rockClub.CanUserEnterTheClub(userMaria);//false
+            folkClub.CanUserEnter(clubGod); 
+            folkClub.CanUserEnter(folkGod); 
+            houseClub.CanUserEnter(everythingGod); 
+            rockClub.CanUserEnter(rockGod); 
+            folkClub.CanUserEnter(folkUser);
+            folkClub.CanUserEnter(userStefan);
+            folkClub.CanUserEnter(userDani);
+            houseClub.CanUserEnter(userDamon);
+            rockClub.CanUserEnter(userMaria);
 
 
             folkClub.AddUserToClub(clubGod);
@@ -64,15 +51,15 @@ namespace DrinkBook
             houseClub.PrintUserNamesInClubs();
             rockClub.PrintUserNamesInClubs();
 
-            folkClub.RemoveUserFromClub(clubGod);
-            folkClub.RemoveUserFromClub(folkGod);
-            houseClub.RemoveUserFromClub(everythingGod);
-            rockClub.RemoveUserFromClub(rockGod);
-            folkClub.RemoveUserFromClub(folkUser);
-            folkClub.RemoveUserFromClub(userStefan);
-            folkClub.RemoveUserFromClub(userDani);
-            houseClub.RemoveUserFromClub(userDamon);
-            rockClub.RemoveUserFromClub(userMaria);
+            folkClub.RemoveFromClub(clubGod);
+            folkClub.RemoveFromClub(folkGod);
+            houseClub.RemoveFromClub(everythingGod);
+            rockClub.RemoveFromClub(rockGod);
+            folkClub.RemoveFromClub(folkUser);
+            folkClub.RemoveFromClub(userStefan);
+            folkClub.RemoveFromClub(userDani);
+            houseClub.RemoveFromClub(userDamon);
+            rockClub.RemoveFromClub(userMaria);
 
             Console.WriteLine("User names after removal: (should be blank)");
             folkClub.PrintUserNamesInClubs();
