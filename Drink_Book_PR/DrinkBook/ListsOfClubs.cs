@@ -8,7 +8,7 @@ namespace DrinkBook
     {
         private const int startingSize = 4;
 
-        public List<Club> listOfClubs = new List<Club>();
+        private List<Club> listOfClubs = new List<Club>();
 
         public void AddClub(Club club)
         {
@@ -21,13 +21,13 @@ namespace DrinkBook
 
             for (int i = 0; i < this.listOfClubs.Count; i++)
             {
-                clubNames.AppendJoin(',', this.listOfClubs[i].Name);
+                clubNames.AppendJoin(',', this.listOfClubs[i].Name); // It Works ;)
             }
 
             return clubNames.ToString();
         }
 
-        public void AlcoholPrices()
+        public void PrintAlcoholPrices()
         {
             for (int i = 0; i < this.listOfClubs.Count; i++)
             {

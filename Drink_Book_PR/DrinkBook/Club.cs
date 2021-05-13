@@ -63,7 +63,7 @@ namespace DrinkBook
 
         public virtual bool CanUserEnter(User user)
         {
-            decimal priceOfAlcohol = CostOfAlcoholToDrink(user.WhiskeysToDrink, user.VodkasToDrink);
+            decimal priceOfAlcohol = PrintCostOfAlcoholToDrink(user.WhiskeysToDrink, user.VodkasToDrink);
 
             if (user.Budget < priceOfAlcohol)
             {
@@ -81,7 +81,7 @@ namespace DrinkBook
             return true;
         }
 
-        public decimal CostOfAlcoholToDrink(int whiskeysToDrink, int vodkasToDrink)
+        public decimal PrintCostOfAlcoholToDrink(int whiskeysToDrink, int vodkasToDrink)
         {
             decimal convertedWhiskeyPrice = 0;
             decimal convertedVodkaPrice = 0;
