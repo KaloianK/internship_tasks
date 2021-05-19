@@ -3,74 +3,126 @@ using System.Collections.Generic;
 using System.Text;
 using KokoDajMu.Classes;
 using KokoDajMu.Interfaces;
+using System.Linq;
 
 namespace KokoDajMu.Classes
 {
     public class Artist : User, IArtist
     {
-
         private List<Album> albumsList = new List<Album>();
-        private List<Song> songsList = new List<Song>();
+        private List<string> albumsNames = new List<string>();
 
-
-        public void AddAlbum(Album album)
+        public Artist()
         {
-            //1. Check if album with same name exists and if so ask to rewrite or cancel
-            if (!albumsList.Contains(album))
-            {
-                Console.WriteLine("Album does not exist! Do you want to try different name?");
-                //Give chance to press yes or no.
-                //If yes let user set another name for album.
-            }
-            else
-            {
-                //2. Add album to the List of Albums
-                albumsList.Add(album);
-            }
 
         }
 
-        public void AddSong(Album album, Song song)
+        public Artist(string username, string fullName, List<string> genres, List<string> albumsNames)
         {
-            //1. Check if song is already in the album if yes print message that song is already in and dont add(prob)
-            if (album.SongsList.Contains(song))
+            this.UserName = username;
+            this.FullName = fullName;
+            this.genres = genres;
+            this.albumNames = albumsNames;
+        }
+
+        public void PrintInfo()
+        {
+            Console.WriteLine("Name: {0}\nUsername: {1}\nPassword: {2}\nDate of birth: {3}\nMusic genres: {4}\nAlbums: {5}",
+                this.FullName, this.UserName, this.Password, this.DateOfBirth, String.Join(", ", this.genres.Select(genre => genre.Length).ToArray()),
+                String.Join(", ", this.albumsList.Select(albums => albums.Name).ToArray()));
+        }
+
+        public void PrintAlbumsByName()
+        {
+            foreach (string albumName in this.albumsList.Select(albumNames => albumNames.Name).ToArray())
             {
-                Console.WriteLine("Song '{0}' is already in the '{1}'! The song was not added again!", song.Name, album.Name);
+                Console.WriteLine(String.Join(", ", albumName));
+            }
+        }
+
+        public void CreateAlbum(string albumName, string genre, string releaseDate)
+        {
+
+            if (this.albumsList.Select(albumNames => albumNames.Name).Equals(albumName))
+            {
+                Console.WriteLine("Album with that name exists! Do you want to try different name?");
             }
             else
             {
-                //2. If not add song to Album
-                album.SongsList.Add(song); //Function is NOT done!!!
+                this.albumsList.Add(new Album(albumName, this.FullName, genre, releaseDate));
             }
-
-
         }
 
         public void RemoveAlbum(Album album)
         {
-            //1. If exists Remove()
-            if (albumsList.Contains(album))
+            if (this.albumsList.Contains(album))
             {
-                albumsList.Remove(album);
+                this.albumsList.Remove(album);
             }
             else
             {
-                //2. If doesnt exist throw exception
-                throw new ArgumentException("Album {0} is not found {1}!", album.Name);
+                throw new ArgumentException("Album {0} is not found!", album.Name);
             }
         }
 
-        public void RemoveSong(Album album, Song song)
+        private Album GetAlbumByName(string name)
         {
-            //1. If song's in album .Remove()
-            if (album.SongsList.Contains(song))
+            return this.albumsList.FirstOrDefault(album => album.Name.Equals(name));
+        }
+
+        public void AddSongToAlbum(string albumName, Song song)
+        {
+            Album album = GetAlbumByName(albumName);
+
+            if (album != null)
             {
-                album.SongsList.Remove(song);
+                if (album.songsList.Contains(song))
+                {
+                    Console.WriteLine("Song '{0}' is already in the '{1}'! The song was not added again!", song.Name, album.Name);
+                }
+                else
+                {
+                    album.songsList.Add(song);
+                }
             }
             else
             {
-                //2. If not throw exception
-                throw new ArgumentException(string.Format("Song {0} is not found in {1} album!", album.Name, song.Name));
+                Console.WriteLine("Album with the name {0} does not exist", albumName);
+            }
+
+            AddSongGenreToArtistInfo(song);
+        }
+
+        public void RemoveSongFromAlbum(string albumName, Song song)
+        {
+            Album album = GetAlbumByName(albumName);
+
+            if (album != null)
+            {
+                if (album.songsList.Contains(song))
+                {
+                    album.songsList.Remove(song);
+                }
+                else
+                {
+                    throw new ArgumentException(string.Format("Song {0} is not found in {1} album!", album.Name, song.Name));
+                }
+            }
+            else
+            {
+                Console.WriteLine("Album with the name {0} does not exist", albumName);
+            }
+        }
+
+        private void AddSongGenreToArtistInfo(Song song)
+        {
+            if (this.genres.Contains(song.Genre))
+            {
+                return;
+            }
+            else
+            {
+                this.genres.Add(song.Genre);
             }
         }
     }

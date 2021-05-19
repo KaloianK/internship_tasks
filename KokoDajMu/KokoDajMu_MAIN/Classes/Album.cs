@@ -3,63 +3,75 @@ using System.Collections.Generic;
 using System.Text;
 using KokoDajMu.Classes;
 using KokoDajMu.Interfaces;
+using System.Linq;
 
 namespace KokoDajMu.Classes
 {
     public class Album : IAlbum
     {
         public string Name { get; set; }
-        public decimal AllSongsLength { get; }
-        public List<Album> AlbumsList { get; set; }
-        public List<Song> SongsList { get; set; }
-        private List<Album> albumsList = new List<Album>();
-        private List<Song> songsList = new List<Song>();
+        public string Artist { get; set; }
+        public string Genre { get; set; }
+        public string ReleaseDate { get; set; }
+        public List<Song> songsList = new List<Song>();
+        public List<string> songsListNames = new List<string>();
+        public List<string> genresList = new List<string>();
 
         public Album(string name)
         {
             this.Name = name;
         }
 
-       
-        public void PrintAlbums()
+        public Album(string name, string artist, string genre, string releaseDate)
         {
-            foreach (var album in this.albumsList)
+            this.Name = name;
+            this.Artist = artist;
+            this.Genre = genre;
+            this.ReleaseDate = releaseDate;
+        }
+
+        public Album(string name, string releaseYear, List<string> genres, List<string> albumSongs)
+        {
+            this.Name = name;
+            this.ReleaseDate = releaseYear;
+            this.genresList = genres;
+            this.songsListNames = albumSongs;
+        }
+
+        public void AddSong(Song song)
+        {
+            if (this.songsList.Contains(song))
             {
-                Console.WriteLine(album);
+                throw new ArgumentException(string.Format("Song {0} Already exists in the album {1}", song.Name, this.Name));
+            }
+            else
+            {
+                this.songsList.Add(song);
             }
         }
 
-        public void AddSongToAlbum()
+        private decimal GetDuration()
         {
-           
+            return this.songsList.Select(song => song.SongDuration).Sum();
         }
 
-        public decimal GetLengthOfAlbum(Album album)
+        public void PrintDuration()
         {
-            decimal sumOfAllSongsLength = 0;
+            Console.WriteLine("The duration of all songs in Album {0} is: {1} minutes or {2} hours", this.Name, (double)GetDuration() / 60, (double)GetDuration() / 3600);
+        }
 
-            foreach (var songLength in album.SongsList)
+        public void GetInfo()
+        {
+            Console.WriteLine("Name: {0}\nArtist: {1}\nGenre: {2}\nDate Of Release: {3}\nAll Songs In {0}: {4}\nDuration: {5}",
+                this.Name, this.Artist, this.Genre, this.ReleaseDate, String.Join(", ", this.songsList.Select(song => song.Name).ToArray()), GetDuration());
+        }
+
+        public void PrintSongs()
+        {
+            foreach (Song songs in this.songsList)
             {
-                sumOfAllSongsLength += songLength.songLength;
+                Console.WriteLine(String.Join(", ", songs));
             }
-
-            return sumOfAllSongsLength;
-        }
-
-        public void PrintLengthOfAlbum(Album album)
-        {
-            Console.WriteLine("The length of all songs in Album {0} is: {1} minutes or {2} hours", album.Name,(double) GetLengthOfAlbum(album) / 60, (double) GetLengthOfAlbum(album) / 3600);
-        }
-
-
-        public void GetInfoForAlbum()
-        {
-           
-        }
-
-        public void PrintSongsInAlbum()
-        {
-            
         }
     }
 }
