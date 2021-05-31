@@ -9,7 +9,7 @@ namespace KokoDajMu.Classes
 {
     public class Artist : User, IArtist
     {
-        private List<Album> albumsList = new List<Album>();
+        public List<Album> albumsList = new List<Album>();
         private List<string> albumsNames = new List<string>();
 
         public Artist()
@@ -45,24 +45,23 @@ namespace KokoDajMu.Classes
 
             if (this.albumsList.Select(albumNames => albumNames.Name).Equals(albumName))
             {
-                Console.WriteLine("Album with that name exists! Do you want to try different name?");
+                throw new ArgumentException("Album with that name exists! Do you want to try different name?");
             }
-            else
-            {
-                this.albumsList.Add(new Album(albumName, this.FullName, genre, releaseDate));
-            }
+
+            this.albumsList.Add(new Album(albumName, this.FullName, genre, releaseDate));
         }
 
-        public void RemoveAlbum(Album album)
+        public void RemoveAlbum(string albumName)
         {
-            if (this.albumsList.Contains(album))
+            Album albumToRemove = GetAlbumByName(albumName);
+
+            if (albumToRemove == null)
             {
-                this.albumsList.Remove(album);
+                throw new ArgumentException("Album {0} is not found!", albumName);
+
             }
-            else
-            {
-                throw new ArgumentException("Album {0} is not found!", album.Name);
-            }
+
+            this.albumsList.Remove(albumToRemove);
         }
 
         private Album GetAlbumByName(string name)
@@ -74,20 +73,18 @@ namespace KokoDajMu.Classes
         {
             Album album = GetAlbumByName(albumName);
 
-            if (album != null)
+            if (album == null)
             {
-                if (album.songsList.Contains(song))
-                {
-                    Console.WriteLine("Song '{0}' is already in the '{1}'! The song was not added again!", song.Name, album.Name);
-                }
-                else
-                {
-                    album.songsList.Add(song);
-                }
+                Console.WriteLine("Album with the name {0} does not exist", albumName);
+            }
+
+            if (album.songsList.Contains(song))
+            {
+                Console.WriteLine("Song '{0}' is already in the '{1}'! The song was not added again!", song.Name, album.Name);
             }
             else
             {
-                Console.WriteLine("Album with the name {0} does not exist", albumName);
+                album.songsList.Add(song);
             }
 
             AddSongGenreToArtistInfo(song);
@@ -99,18 +96,16 @@ namespace KokoDajMu.Classes
 
             if (album != null)
             {
-                if (album.songsList.Contains(song))
-                {
-                    album.songsList.Remove(song);
-                }
-                else
-                {
-                    throw new ArgumentException(string.Format("Song {0} is not found in {1} album!", album.Name, song.Name));
-                }
+                Console.WriteLine("Album with the name {0} does not exist", albumName);
+            }
+
+            if (album.songsList.Contains(song))
+            {
+                album.songsList.Remove(song);
             }
             else
             {
-                Console.WriteLine("Album with the name {0} does not exist", albumName);
+                throw new ArgumentException(string.Format("Song {0} is not found in {1} album!", song.Name, albumName));
             }
         }
 

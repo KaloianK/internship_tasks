@@ -1,0 +1,2 @@
+<artist><Metallica><Metallica>[](genres:['rock',  'metal'])(albums: ['Black Album'])</artist>
+<artist><Stenli><Stanislav Slanev>[](genres:['pop',  'rock'])(albums: ['Obseben'])</artist>

@@ -12,7 +12,7 @@ namespace KokoDajMu.Classes
         public List<string> FavoriteSongs { get; set; }
         private List<Song> favoriteSongs = new List<Song>();
         private List<Song> songPlaylist = new List<Song>();
-        private List<Playlist> playlists = new List<Playlist>();
+        public List<Playlist> playlists = new List<Playlist>();
 
         public Listener() { }
 
@@ -58,9 +58,21 @@ namespace KokoDajMu.Classes
             }
         }
 
+        private bool ArePlaylistNamesEqual(string playlistName)
+        {
+            List<string> playlistsNames = this.playlists.Select(playlistNames => playlistNames.Name).ToList();
+
+            if (playlistsNames.Contains(playlistName))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public void CreatePlaylist(string playlistName)
         {
-            if (playlists.Select(playlistNames => playlistNames.Name).Equals(playlistName))
+            if (ArePlaylistNamesEqual(playlistName))
             {
                 throw new ArgumentException("Playlist with that name already exists!");
             }

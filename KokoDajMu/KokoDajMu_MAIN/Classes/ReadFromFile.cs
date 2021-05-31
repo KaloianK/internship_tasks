@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace KokoDajMu.Classes
 {
-    public class ReadAndWrite
+    public class ReadFromFile
     {
-        private List<User> GetUsersFromFile()
+        public List<User> GetUsersFromFile()
         {
-            StreamReader reader = new StreamReader(@"C:\Users\Administrator\Desktop\KokoDajMu.txt");
+            StreamReader reader = new StreamReader(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\KokoDajMu.txt");
             Regex findUserInfo = new Regex(@"<user><(?<name>\w+)>\((?<password>\S{4,})\)\{(?<type>listener|artist)\}<\/user>");
 
             using (reader)
@@ -31,11 +31,10 @@ namespace KokoDajMu.Classes
             }
         }
 
-        private List<Listener> GetListenersFromFile()
+        public List<Listener> GetListenersFromFile()
         {
-            StreamReader reader = new StreamReader(@"C:\Users\Administrator\Desktop\KokoDajMu.txt");
+            StreamReader reader = new StreamReader(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\KokoDajMu.txt");
             Regex findListenersInfo = new Regex(@"<listener><(?<username>\w+)><(?<fullName>\D+)>\[(?<dateOfBirth>(\d+)\/(\d+)\/(\d+))\]\(genres: *\[(?<genres>\D+)\]\)\(likedSongs: *\[(?<likedSongs>\D+)\]\)\(playlists: *\[(?<playlists>\w+)*\]\)<\/listener>");
-
 
             using (reader)
             {
@@ -62,9 +61,9 @@ namespace KokoDajMu.Classes
             }
         }
 
-        private List<Artist> GetArtistFromFile()
+        public List<Artist> GetArtistFromFile()
         {
-            StreamReader reader = new StreamReader(@"C:\Users\Administrator\Desktop\KokoDajMu.txt");
+            StreamReader reader = new StreamReader(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\KokoDajMu.txt");
             Regex findArtistInfo = new Regex(@"<artist><(?<username>\w+)><(?<fullName>\D+)>\[(\d+\/\d+\/\d+)\]\(genres: *\[(?<genres>\D+)\]\)\(albums: *\[(?<albums>\D+)\]\)<\/artist>");
 
             using (reader)
@@ -91,9 +90,9 @@ namespace KokoDajMu.Classes
             }
         }
 
-        private List<Song> GetSongFromFile()
+        public List<Song> GetSongFromFile()
         {
-            StreamReader reader = new StreamReader(@"C:\Users\Administrator\Desktop\KokoDajMu.txt");
+            StreamReader reader = new StreamReader(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\KokoDajMu.txt");
             Regex findSongInfo = new Regex(@"<song><(?<songName>\D+)>\[(?<songDuration>\S+)\]<\/song>");
 
             using (reader)
@@ -115,9 +114,9 @@ namespace KokoDajMu.Classes
             }
         }
 
-        private List<Album> GetAlbumFromFile()
+        public List<Album> GetAlbumFromFile()
         {
-            StreamReader reader = new StreamReader(@"C:\Users\Administrator\Desktop\KokoDajMu.txt");
+            StreamReader reader = new StreamReader(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\KokoDajMu.txt");
             Regex findAlbumInfo = new Regex(@"<album><(?<albumName>\D+ *)>\[(?<releaseYear>\d+)\]\(genres: *\[(?<albumGenres>\w+)\]\)\(songs: *\[(?<albumSongs>\D+)\]\)<\/album>");
 
             using (reader)

@@ -10,4 +10,8 @@
     <None Remove="DataBaseForLogIn_log.ldf" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TextDocuments\" />
+  </ItemGroup>
+
 </Project>

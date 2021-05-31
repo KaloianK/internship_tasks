@@ -13,7 +13,21 @@ namespace KokoDajMu
     {
         static void Main()
         {
-            List<Album> albums = new List<Album>();
+            ReadFromFile test = new ReadFromFile();
+            WriteInFile testWrite = new WriteInFile();
+
+            testWrite.SaveUserListInTextFile();
+            testWrite.SaveListenerListInTextFile();
+            testWrite.SaveArtistListInTextFile();
+            testWrite.SaveAlbumListInTextFile();
+            testWrite.SaveSongListInTextFile();
+            testWrite.SaveAllFilesInOne();
+
+            List<Album> albums = test.GetAlbumFromFile();
+            List<Artist> artists = test.GetArtistFromFile();
+            List<Listener> listeners = test.GetListenersFromFile();
+            List<User> users = test.GetUsersFromFile();
+            List<Song> songs = test.GetSongFromFile();
             Artist myUser = new Artist();
             Song mySong = new Song("Sicko Mode", 312, "Travis Scott", "Hip-Hop", "21/08/2018");
             Album myAlbum = new Album("Astroworld");
@@ -26,9 +40,29 @@ namespace KokoDajMu
             myAlbum.GetInfo();
             myUser.CreateAlbum("Astroworld", "Hip-Hop", "03/08/2018");
 
-            ReadAndWrite test = new ReadAndWrite();
-
             test.PrintAllInfoFromTxtFile();
+
+            bool running = true;
+            WriteInFile write = new WriteInFile();
+
+            while (running)
+            {
+                string command = Console.ReadLine();
+
+                switch (command)
+                {
+
+                    case "exit":
+                        //write.overwriteFile();
+                        running = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+
+
         }
     }
 }

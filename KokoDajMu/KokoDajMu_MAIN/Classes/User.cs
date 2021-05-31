@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using KokoDajMu.Classes;
 using KokoDajMu.Interfaces;
+using System.Linq;
 
 namespace KokoDajMu.Classes
 {
@@ -24,7 +25,5 @@ namespace KokoDajMu.Classes
             this.Password = password;
             this.Type = type;
         }
-
-
     }
 }
