@@ -33,7 +33,7 @@ namespace KokoDajMu.Classes
 
         public List<Listener> GetListenersFromFile()
         {
-            StreamReader reader = new StreamReader(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\KokoDajMu.txt");
+            StreamReader reader = new StreamReader(Constants.PATH_TO_TEXT_FILES_TO_READ);
             Regex findListenersInfo = new Regex(@"<listener><(?<username>\w+)><(?<fullName>\D+)>\[(?<dateOfBirth>(\d+)\/(\d+)\/(\d+))\]\(genres: *\[(?<genres>\D+)\]\)\(likedSongs: *\[(?<likedSongs>\D+)\]\)\(playlists: *\[(?<playlists>\w+)*\]\)<\/listener>");
 
             using (reader)
@@ -63,7 +63,7 @@ namespace KokoDajMu.Classes
 
         public List<Artist> GetArtistFromFile()
         {
-            StreamReader reader = new StreamReader(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\KokoDajMu.txt");
+            StreamReader reader = new StreamReader(Constants.PATH_TO_TEXT_FILES_TO_READ);
             Regex findArtistInfo = new Regex(@"<artist><(?<username>\w+)><(?<fullName>\D+)>\[(\d+\/\d+\/\d+)\]\(genres: *\[(?<genres>\D+)\]\)\(albums: *\[(?<albums>\D+)\]\)<\/artist>");
 
             using (reader)
@@ -92,7 +92,7 @@ namespace KokoDajMu.Classes
 
         public List<Song> GetSongFromFile()
         {
-            StreamReader reader = new StreamReader(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\KokoDajMu.txt");
+            StreamReader reader = new StreamReader(Constants.PATH_TO_TEXT_FILES_TO_READ);
             Regex findSongInfo = new Regex(@"<song><(?<songName>\D+)>\[(?<songDuration>\S+)\]<\/song>");
 
             using (reader)
@@ -116,7 +116,7 @@ namespace KokoDajMu.Classes
 
         public List<Album> GetAlbumFromFile()
         {
-            StreamReader reader = new StreamReader(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\KokoDajMu.txt");
+            StreamReader reader = new StreamReader(Constants.PATH_TO_TEXT_FILES_TO_READ);
             Regex findAlbumInfo = new Regex(@"<album><(?<albumName>\D+ *)>\[(?<releaseYear>\d+)\]\(genres: *\[(?<albumGenres>\w+)\]\)\(songs: *\[(?<albumSongs>\D+)\]\)<\/album>");
 
             using (reader)
@@ -145,11 +145,18 @@ namespace KokoDajMu.Classes
 
         public void PrintAllInfoFromTxtFile()
         {
+            Console.WriteLine("Result for Get User From File:\n");
+
+            foreach (User users in GetUsersFromFile())
+            {
+                Console.WriteLine("Username: {0}\nPassword: {1}\nType: {2}\n", users.UserName, users.Password, users.Type);
+            }
+
             Console.WriteLine("Result for Get Listeners From File:\n");
 
             foreach (Listener listeners in GetListenersFromFile())
             {
-                Console.WriteLine("Username: {0}\nFull Name: {1}\nDate of birth: {2}\nGenres: {3}\nFavorite Songs: {4}",
+                Console.WriteLine("Username: {0}\nFull Name: {1}\nDate of birth: {2}\nGenres: {3}\nFavorite Songs: {4}\n",
                     listeners.UserName,
                     listeners.FullName,
                     listeners.DateOfBirth,
@@ -157,18 +164,11 @@ namespace KokoDajMu.Classes
                     String.Join(", ", listeners.FavoriteSongs.Select(favSong => favSong).ToArray()));
             }
 
-            Console.WriteLine("Result for Get User From File:\n");
-
-            foreach (User users in GetUsersFromFile())
-            {
-                Console.WriteLine("Username: {0}\nPassword: {1}\nType: {2}", users.UserName, users.Password, users.Type);
-            }
-
             Console.WriteLine("Result for Get Artist From File:\n");
 
             foreach (Artist artist in GetArtistFromFile())
             {
-                Console.WriteLine("Username: {0}\nFull Name: {1}\nGenres: {2}\nAlbums: {3}",
+                Console.WriteLine("Username: {0}\nFull Name: {1}\nGenres: {2}\nAlbums: {3}\n",
                     artist.UserName,
                     artist.FullName,
                     String.Join(", ", artist.genres.Select(genre => genre).ToArray()),
@@ -179,7 +179,7 @@ namespace KokoDajMu.Classes
 
             foreach (Album album in GetAlbumFromFile())
             {
-                Console.WriteLine("Album name: {0}\nRelease date: {1}\nGenres: {2}\nAlbum songs: {3}",
+                Console.WriteLine("Album name: {0}\nRelease date: {1}\nGenres: {2}\nAlbum songs: {3}\n",
                     album.Name,
                     album.ReleaseDate,
                     String.Join(", ", album.genresList.Select(genre => genre).ToArray()),
@@ -190,7 +190,7 @@ namespace KokoDajMu.Classes
 
             foreach (Song song in GetSongFromFile())
             {
-                Console.WriteLine("Song name: {0}\nSong Duration: {1}", song.Name, song.SongDurationFromTXTFile);
+                Console.WriteLine("Song name: {0}\nSong Duration: {1}\n", song.Name, song.SongDurationFromFile);
             }
         }
     }

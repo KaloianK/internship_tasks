@@ -10,6 +10,5 @@ namespace KokoDajMu.Interfaces
         public void AddSong(Song song);
         public void GetInfo();
         public void PrintSongs();
-
     }
 }

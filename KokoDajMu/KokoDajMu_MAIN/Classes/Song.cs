@@ -11,7 +11,7 @@ namespace KokoDajMu.Classes
     {
         public string Name { get; set; }
         public decimal SongDuration { get; set; }
-        public string SongDurationFromTXTFile { get; set; }
+        public string SongDurationFromFile { get; set; }
         public string ArtistName { get; set; }
         public string Genre { get; set; }
         public string DateOfRelease { get; set; }
@@ -28,7 +28,7 @@ namespace KokoDajMu.Classes
         public Song(string songName, string songDuration)
         {
             this.Name = songName;
-            this.SongDurationFromTXTFile = songDuration;
+            this.SongDurationFromFile = songDuration;
         }
     }
 }

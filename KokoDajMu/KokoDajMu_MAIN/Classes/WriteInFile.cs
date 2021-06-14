@@ -23,7 +23,7 @@ namespace KokoDajMu.Classes
 
         public void SaveUserListInTextFile()
         {
-            TextWriter convertUserListInTextFile = new StreamWriter(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\UserList.txt");
+            TextWriter convertUserListInTextFile = new StreamWriter(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "UserList.txt");
 
             using (convertUserListInTextFile)
             {
@@ -36,7 +36,7 @@ namespace KokoDajMu.Classes
 
         public void SaveListenerListInTextFile()
         {
-            TextWriter convertListenerListInTextFile = new StreamWriter(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\ListenerList.txt");
+            TextWriter convertListenerListInTextFile = new StreamWriter(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "ListenerList.txt");
 
             using (convertListenerListInTextFile)
             {
@@ -50,7 +50,7 @@ namespace KokoDajMu.Classes
 
         public void SaveArtistListInTextFile()
         {
-            TextWriter convertArtistListInTextFile = new StreamWriter(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\ArtistList.txt");
+            TextWriter convertArtistListInTextFile = new StreamWriter (Constants.PATH_TO_TEXT_FILES_TO_WRITE + "ArtistList.txt");
 
             using (convertArtistListInTextFile)
             {
@@ -64,7 +64,7 @@ namespace KokoDajMu.Classes
 
         public void SaveAlbumListInTextFile()
         {
-            TextWriter convertAlbumListInTextFile = new StreamWriter(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\AlbumList.txt");
+            TextWriter convertAlbumListInTextFile = new StreamWriter(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "AlbumList.txt");
 
             using (convertAlbumListInTextFile)
             {
@@ -78,50 +78,50 @@ namespace KokoDajMu.Classes
 
         public void SaveSongListInTextFile()
         {
-            TextWriter convertSongListInTextFile = new StreamWriter(@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\SongList.txt");
+            TextWriter convertSongListInTextFile = new StreamWriter(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "SongList.txt");
 
             using (convertSongListInTextFile)
             {
                 foreach (Song song in this.songsList)
                 {
-                    convertSongListInTextFile.WriteLine("<song><{0}>[{1}]</song>", song.Name, song.SongDurationFromTXTFile);
+                    convertSongListInTextFile.WriteLine("<song><{0}>[{1}]</song>", song.Name, song.SongDurationFromFile);
                 }
             }
         }
 
         public void SaveAllFilesInOne()
         {
-            StreamWriter allFilesWrittenHere = File.CreateText((@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\KokoDajMuOverWritten.txt"));
+            StreamWriter textFileOverWritten = File.CreateText(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "KokoDajMuOverWritten.txt");
 
-            string[] userFile = File.ReadAllLines((@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\UserList.txt"));
-            string[] listenerFile = File.ReadAllLines((@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\ListenerList.txt"));
-            string[] artistFile = File.ReadAllLines((@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\ArtistList.txt"));
-            string[] albumFile = File.ReadAllLines((@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\AlbumList.txt"));
-            string[] songFile = File.ReadAllLines((@"\\files\Public\Transfer\Kaloian Karaivanov\Internship\internship_tasks\KokoDajMu\KokoDajMu_MAIN\TextDocuments\SongList.txt"));
+            string[] userFile = File.ReadAllLines(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "UserList.txt");
+            string[] listenerFile = File.ReadAllLines(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "ListenerList.txt");
+            string[] artistFile = File.ReadAllLines(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "ArtistList.txt");
+            string[] albumFile = File.ReadAllLines(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "AlbumList.txt");
+            string[] songFile = File.ReadAllLines(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "SongList.txt");
 
-            using (allFilesWrittenHere)
+            using (textFileOverWritten)
             {
                 for (int i = 0; i < userFile.Length || i < songFile.Length || i < albumFile.Length; i++)
                 {
                     if (i < userFile.Length)
                     {
-                        allFilesWrittenHere.WriteLine(userFile[i]);
+                        textFileOverWritten.WriteLine(userFile[i]);
                     }
                     if (i < listenerFile.Length)
                     {
-                        allFilesWrittenHere.WriteLine(listenerFile[i]);
+                        textFileOverWritten.WriteLine(listenerFile[i]);
                     }
                     if (i < artistFile.Length)
                     {
-                        allFilesWrittenHere.WriteLine(artistFile[i]);
+                        textFileOverWritten.WriteLine(artistFile[i]);
                     }
                     if (i < albumFile.Length)
                     {
-                        allFilesWrittenHere.WriteLine(albumFile[i]);
+                        textFileOverWritten.WriteLine(albumFile[i]);
                     }
                     if (i < songFile.Length)
                     {
-                        allFilesWrittenHere.WriteLine(songFile[i]);
+                        textFileOverWritten.WriteLine(songFile[i]);
                     }
                 }
             }

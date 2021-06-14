@@ -27,7 +27,7 @@ namespace KokoDajMu.Classes
 
         public void PrintInfo()
         {
-            Console.WriteLine("Name: {0}\nUsername: {1}\nPassword: {2}\nDate of birth: {3}\nMusic genres: {4}\nAlbums: {5}",
+            Console.WriteLine("Name: {0}\nUsername: {1}\nPassword: {2}\nDate of birth: {3}\nMusic genres: {4}\nAlbums: {5}\n",
                 this.FullName, this.UserName, this.Password, this.DateOfBirth, String.Join(", ", this.genres.Select(genre => genre.Length).ToArray()),
                 String.Join(", ", this.albumsList.Select(albums => albums.Name).ToArray()));
         }
@@ -42,7 +42,6 @@ namespace KokoDajMu.Classes
 
         public void CreateAlbum(string albumName, string genre, string releaseDate)
         {
-
             if (this.albumsList.Select(albumNames => albumNames.Name).Equals(albumName))
             {
                 throw new ArgumentException("Album with that name exists! Do you want to try different name?");
@@ -111,14 +110,12 @@ namespace KokoDajMu.Classes
 
         private void AddSongGenreToArtistInfo(Song song)
         {
-            if (this.genres.Contains(song.Genre))
-            {
-                return;
-            }
-            else
+            if (!this.genres.Contains(song.Genre))
             {
                 this.genres.Add(song.Genre);
             }
+
+            return;
         }
     }
 }

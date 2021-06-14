@@ -57,12 +57,12 @@ namespace KokoDajMu.Classes
 
         public void PrintDuration()
         {
-            Console.WriteLine("The duration of all songs in Album {0} is: {1} minutes or {2} hours", this.Name, (double)GetDuration() / 60, (double)GetDuration() / 3600);
+            Console.WriteLine("The duration of all songs in Album {0} is: {1} minutes or {2} hours", this.Name, (double)GetDuration() / Constants.CONVERT_TO_MINUTES, (double)GetDuration() / Constants.CONVERT_TO_HOURS);
         }
 
         public void GetInfo()
         {
-            Console.WriteLine("Name: {0}\nArtist: {1}\nGenre: {2}\nDate Of Release: {3}\nAll Songs In {0}: {4}\nDuration: {5}",
+            Console.WriteLine("Name: {0}\nArtist: {1}\nGenre: {2}\nDate Of Release: {3}\nAll Songs In {0}: {4}\nDuration: {5}\n",
                 this.Name, this.Artist, this.Genre, this.ReleaseDate, String.Join(", ", this.songsList.Select(song => song.Name).ToArray()), GetDuration());
         }
 
