@@ -469,14 +469,18 @@ else
 //     }
 // }
 
-
-
-
-const input = `#RoYaL: I'm not sure what you mean, 
-but I am confident that I've written everything correctly.
-Ask #iordan_93 and #pesho if you don't believe me 
+const input = `I'm not sure what you mean but #RoYaL
+says that I've written everything correctly. Ask 
+#iordan_93 and #pesho
+if you don't believe me
 <code>
 #trying to print stuff
+print("yoo")
+</code>
+Yoo
+<code>
+#trying to print stuff
+#gosho
 print("yoo")
 </code>
 pesho gosho`;
@@ -484,66 +488,64 @@ pesho gosho`;
 SoftUniForum(input);
 
 function SoftUniForum(input) {
-    const firstChar = input[0];
-    let getAllTextTillSpecificWord = input.match(/(#\w*[\s*\S*]*)<code>/g);
-    // let getAllTextAfterSpecificWord = input.match(/<code>\n(\#\w*[\s*\S*]*)<\/code>/g)
-    const regEx = /#(?<wordsWithNumberSign>[\w+\-*]+)/g;
-    let bannedNames = input.match(/<\/code>\n(?<bannedNames>\w*[\s*\S*]*)/g);
-    let bannedNamesWithoutCode = bannedNames[0].replace(/<\/code>\n/, '');
-    let allWordsStartingWithNumberSignBeforeCode = getAllTextTillSpecificWord[0].match(regEx); //Array = ['#RoYaL', '#iordan_93', '#pesho']
-    //let allWordsStartingWithNumberSignAfterCode = getAllTextAfterSpecificWord[0].match(regEx); //Array = ['#trying']
+    let output = input;
+    let lines = output.split('\n');
+    let getAllTextTillSpecificWord = '';
+    const regEx = /#([\w+\-*]+)/g;
+    let bannedNamesWithoutCode = lines[lines.length - 1];
+    let allWordsStartingWithNumberSignBeforeCode = [];
 
-    while(regEx.test(getAllTextTillSpecificWord)) {
-        //while finding matches get index of it and replace them with the strings in allWordsStartingWithNumberSignBeforeCode
-        //remove last line and concat() the 2 strings
-    }
-
-    for (let i = 0; i < allWordsStartingWithNumberSignBeforeCode.length; i++) {
-        let currentString = allWordsStartingWithNumberSignBeforeCode[i]
-
-        if (CheckLastChar(currentString)) {
-            allWordsStartingWithNumberSignBeforeCode.splice(i, 1, `Invalid name: ${currentString}`);
+    for (let i = 0; i < lines.length; i++) {
+        if (lines[i] === '<code>') {
+            break;
         }
 
-        if (allWordsStartingWithNumberSignBeforeCode.includes(currentString)) {
-            nameWithoutNumberSign = currentString.slice(1);
-            allWordsStartingWithNumberSignBeforeCode.splice(i, 1, `<a href="/users/profile/show/${nameWithoutNumberSign}">${nameWithoutNumberSign}</a>`);
-        }
+        getAllTextTillSpecificWord = getAllTextTillSpecificWord + lines[i] + '\n';
     }
 
-    let bannedNamesArray = bannedNamesWithoutCode.split(' ');
+    allWordsStartingWithNumberSignBeforeCode = getAllTextTillSpecificWord.match(regEx);
 
-    for (let i = 0; i < bannedNamesArray.length; i++) {
-        let bannedNameToSearch = `<a href="/users/profile/show/${bannedNamesArray[i]}">${bannedNamesArray[i]}</a>`;
+    if (allWordsStartingWithNumberSignBeforeCode.length !== 0) {
 
-        for (let j = 0; j < allWordsStartingWithNumberSignBeforeCode.length; j++) {
-            let currentStringToEvaluate = allWordsStartingWithNumberSignBeforeCode[j];
+        for (let i = 0; i < allWordsStartingWithNumberSignBeforeCode.length; i++) {
+            let currentString = allWordsStartingWithNumberSignBeforeCode[i];
+            let lastChar = currentString[currentString.length - 1];
 
-            if (currentStringToEvaluate === bannedNameToSearch) {
-                let indexOfBannedName = allWordsStartingWithNumberSignBeforeCode.indexOf(bannedNameToSearch);
-
-                allWordsStartingWithNumberSignBeforeCode.splice(indexOfBannedName, 1, '******')//ReplaceAlphanumericalSymbolsWithSnowflake(bannedNameToSearch));
+            if (!/[a-zA-Z0-9]/.test(lastChar)) {
+                allWordsStartingWithNumberSignBeforeCode.splice(i, 1, `Invalid name: ${currentString}`);
             }
+
+            if (allWordsStartingWithNumberSignBeforeCode.includes(currentString)) {
+                nameWithoutNumberSign = currentString.slice(1);
+                allWordsStartingWithNumberSignBeforeCode.splice(i, 1, `<a href="/users/profile/show/${nameWithoutNumberSign}">${nameWithoutNumberSign}</a>`);
+            }
+
+            let bannedNamesArray = bannedNamesWithoutCode.split(' ');
+
+            for (let i = 0; i < bannedNamesArray.length; i++) {
+                let nameToConvertInSnowflakes = bannedNamesArray[i];
+                let bannedNameToSearch = `<a href="/users/profile/show/${bannedNamesArray[i]}">${bannedNamesArray[i]}</a>`;
+
+                for (let index = 0; index < nameToConvertInSnowflakes.length; index++) {
+                    nameToConvertInSnowflakes = nameToConvertInSnowflakes.replace(nameToConvertInSnowflakes[index], '*');
+                }
+
+                for (let j = 0; j < allWordsStartingWithNumberSignBeforeCode.length; j++) {
+                    let currentStringToEvaluate = allWordsStartingWithNumberSignBeforeCode[j];
+
+                    if (currentStringToEvaluate === bannedNameToSearch) {
+                        let indexOfBannedName = allWordsStartingWithNumberSignBeforeCode.indexOf(bannedNameToSearch);
+
+                        allWordsStartingWithNumberSignBeforeCode.splice(indexOfBannedName, 1, nameToConvertInSnowflakes)
+                    }
+                }
+            }
+
+            output = output.replace(currentString, allWordsStartingWithNumberSignBeforeCode[i]);
         }
     }
+    else console.log(output);
 
-    function CheckLastChar(someString) {
-        let lastChar = someString[someString.length - 1];
-
-        if (someString.length < 3) return true;
-
-        if (/[a-zA-Z0-9]/.test(lastChar)) return false;
-
-        return true;
-    }
-
-    // function ReplaceAlphanumericalSymbolsWithSnowflake(stringToReplace) {
-    //     for (let i = 0; i < stringToReplace.length; i++) {
-    //         console.log(stringToReplace[i]);
-    //         stringToReplace.splice(i, 1, '*');
-    //         console.log(stringToReplace[i]);
-    //     }
-
-    //     return stringToReplace;
-    // }
+    let matchOutputToCode = output.match(/[\s\S]+<\/code>/);
+    console.log(matchOutputToCode[0]);
 }
