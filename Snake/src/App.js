@@ -29,10 +29,8 @@ function App() {
             </ButtonGroup>
             Snake Size
             <ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
-              <Button id='smallSnakeButton' onClick={() => setSnakeSize(10)}>10x10</Button>
-              <Button id='mediumSnakeButton' onClick={() => setSnakeSize(20)}>20x20</Button>
-              <Button id='mediumSnakeButton' onClick={() => setSnakeSize(30)}>30x30</Button>
-              <Button id='largeSnakeButton' onClick={() => setSnakeSize(40)}>40x40</Button>
+              <Button id='smallSnakeButton' onClick={() => setSnakeSize(10)}>Small</Button>
+              <Button id='mediumSnakeButton' onClick={() => setSnakeSize(20)}>Large</Button>
             </ButtonGroup>
             <FormControlLabel control={<Switch checked={allowBorders.allowedBorders} onChange={allowedBorders} name='allowedBorders' />} label="Borders Kill" />
           </Grid>
