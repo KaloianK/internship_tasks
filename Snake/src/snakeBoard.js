@@ -33,6 +33,8 @@ class SnakeBoard extends React.Component {
         this.initializeSnake = this.initializeSnake.bind(this);
         this.setUpdatedSnakeCoordinates = this.setUpdatedSnakeCoordinates.bind(this);
         this.refreshSnake = this.refreshSnake.bind(this);
+        this.drawCanvasWithDiscoSnake = this.drawCanvasWithDiscoSnake.bind(this);
+        this.drawDiscoSnake = this.drawDiscoSnake.bind(this);
 
         this.state = {
             lastKeyPressed: this.startDirection,
@@ -157,12 +159,22 @@ class SnakeBoard extends React.Component {
             document.addEventListener('keydown', _this.changeDirection);
 
             setTimeout(function onTick() {
-                _this.drawCanvas(board);
-                _this.moveSnakeWithBorders();
-                _this.drawSnake();
-                _this.drawFood();
-                _this.enlargeIfFoodEaten();
-                _this.main(board);
+                if (_this.props.discoSnake) {
+                    _this.drawCanvasWithDiscoSnake(board);
+                    _this.moveSnakeWithBorders();
+                    _this.drawSnake();
+                    _this.drawFood();
+                    _this.enlargeIfFoodEaten();
+                    _this.main(board);
+                }
+                else {
+                    _this.drawCanvas(board);
+                    _this.moveSnakeWithBorders();
+                    _this.drawSnake();
+                    _this.drawFood();
+                    _this.enlargeIfFoodEaten();
+                    _this.main(board);
+                }
             }, this.props.snakeSpeed)
         }
         else {
@@ -181,12 +193,22 @@ class SnakeBoard extends React.Component {
             document.addEventListener('keydown', _this.changeDirection);
 
             setTimeout(function onTick() {
-                _this.drawCanvas(board);
-                _this.moveSnake(board);
-                _this.drawSnake();
-                _this.drawFood();
-                _this.enlargeIfFoodEaten();
-                _this.main(board);
+                if (_this.props.discoSnake) {
+                    _this.drawCanvasWithDiscoSnake(board);
+                    _this.moveSnake(board);
+                    _this.drawSnake();
+                    _this.drawFood();
+                    _this.enlargeIfFoodEaten();
+                    _this.main(board);
+                }
+                else {
+                    _this.drawCanvas(board);
+                    _this.moveSnake(board);
+                    _this.drawSnake();
+                    _this.drawFood();
+                    _this.enlargeIfFoodEaten();
+                    _this.main(board);
+                }
             }, this.props.snakeSpeed)
         }
     }
@@ -194,8 +216,19 @@ class SnakeBoard extends React.Component {
     drawCanvas(board) {
         const snakeBoardStyles = this.getSnakeBoardStyles();
         const snakeBoard = board.current;
-        let randomColor = Math.floor(Math.random()*16777215).toString(16)
-        
+
+        snakeBoardStyles.fillStyle = 'white';
+        snakeBoardStyles.strokeStyle = "black";
+        snakeBoardStyles.fillRect(0, 0, snakeBoard.width, snakeBoard.height);
+        snakeBoardStyles.strokeRect(0, 0, snakeBoard.width, snakeBoard.height);
+
+    }
+
+    drawCanvasWithDiscoSnake(board) {
+        const snakeBoardStyles = this.getSnakeBoardStyles();
+        const snakeBoard = board.current;
+        let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+
         snakeBoardStyles.fillStyle = `#${randomColor}`;
         snakeBoardStyles.strokeStyle = "black";
         snakeBoardStyles.fillRect(0, 0, snakeBoard.width, snakeBoard.height);
@@ -203,18 +236,34 @@ class SnakeBoard extends React.Component {
     }
 
     drawSnake() {
-        this.state.snake.forEach(this.drawSnakePart);
+        if (this.props.discoSnake) {
+            this.state.snake.forEach(this.drawDiscoSnake)
+        }
+        else {
+            this.state.snake.forEach(this.drawSnakePart);
+        }
     }
 
-    drawSnakePart(snakePart) {
+    drawDiscoSnake(snakePart) {
         const snakeBoardStyles = this.getSnakeBoardStyles();
-        let randomColor = Math.floor(Math.random()*16777215).toString(16)
+        let randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
         snakeBoardStyles.fillStyle = `#${randomColor}`;
         snakeBoardStyles.strokeStyle = 'black';
         snakeBoardStyles.fillRect(snakePart.x, snakePart.y, this.props.snakeSize, this.props.snakeSize);
         snakeBoardStyles.strokeRect(snakePart.x, snakePart.y, this.props.snakeSize, this.props.snakeSize);
     }
+
+    drawSnakePart(snakePart) {
+        const snakeBoardStyles = this.getSnakeBoardStyles();
+
+        snakeBoardStyles.fillStyle = 'red';
+        snakeBoardStyles.strokeStyle = 'black';
+        snakeBoardStyles.fillRect(snakePart.x, snakePart.y, this.props.snakeSize, this.props.snakeSize);
+        snakeBoardStyles.strokeRect(snakePart.x, snakePart.y, this.props.snakeSize, this.props.snakeSize);
+
+    }
+
 
     moveSnake(board) {
         let newSnakePos = [...this.state.snake];
