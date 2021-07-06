@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import './App.css';
 import SnakeBoard from './snakeBoard';
-import SomeSnakeStuff from './SomeSnakeStuff';
+import HighScoreTable from './HighScoreTable';
 import { Grid, Button, ButtonGroup, FormControlLabel, Switch, Checkbox } from '@material-ui/core';
 
 function App() {
   const [snakeSpeed, setSnakeSpeed] = useState(60);
   const [snakeSize, setSnakeSize] = useState(20);
-  const [userScoresMap, setUserScoreMap] = useState([{ username: 'NaKokoPitonya', score: 'Infinite' }]);
+  const [userScoresMap, setUserScoreMap] = useState([]);
   const [allowBorders, setBorderAllowance] = useState({ allowedBorders: false });
   const [discoSnake, setDiscoSnake] = useState({ allowedDiscoSnake: false });
 
@@ -19,7 +19,7 @@ function App() {
 
   const allowedDiscoSnake = (event) => {
     setDiscoSnake({ ...discoSnake, [event.target.name]: event.target.checked });
-  }
+  };
 
   return (
     <div className="App">
@@ -41,11 +41,10 @@ function App() {
             <FormControlLabel control={<Switch checked={discoSnake.allowedDiscoSnake} onChange={allowedDiscoSnake} name='allowedDiscoSnake' />} label="Disco snake. Warning!" />
           </Grid>
           <Grid item xs={8}><SnakeBoard snakeSpeed={snakeSpeed} snakeSize={snakeSize} saveUserScore={saveUserScore}
-           allowBorders={allowBorders.allowedBorders} discoSnake = {discoSnake.allowedDiscoSnake}/></Grid>
-
+            allowBorders={allowBorders.allowedBorders} discoSnake={discoSnake.allowedDiscoSnake} /></Grid>
           <Grid id='highscore'>
             Highest Scores:
-            <SomeSnakeStuff userScoresMap={userScoresMap} />
+            <HighScoreTable userScoresMap={userScoresMap} />
           </Grid>
         </Grid>
       </div>

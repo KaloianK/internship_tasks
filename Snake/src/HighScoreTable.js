@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import SnakeBoard from './snakeBoard';
-import { Grid, Button, ButtonGroup } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
     table: {
@@ -17,19 +16,11 @@ const useStyles = makeStyles({
     },
 });
 
-// function createData(username, score) {
-//     return { username, score };
-// }
+HighScoreTable.propTypes = {
+    userScoresMap: PropTypes.array
+};
 
-// const rows = [];
-
-// function getHighScore(username, score) {
-//     rows.push(createData(username, score));
-
-//     return rows;
-// }
-
-export default function BasicTable(props) {
+export default function HighScoreTable(props) {
     const classes = useStyles();
     const rows = props.userScoresMap.sort((userScoreA, userScoreB) => userScoreA.score - userScoreB.score);
 
