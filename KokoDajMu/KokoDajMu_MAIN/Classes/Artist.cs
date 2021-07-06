@@ -114,8 +114,6 @@ namespace KokoDajMu.Classes
             {
                 this.genres.Add(song.Genre);
             }
-
-            return;
         }
     }
 }

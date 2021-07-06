@@ -23,7 +23,7 @@ namespace KokoDajMu.Classes
 
         public void SaveUserListInTextFile()
         {
-            TextWriter convertUserListInTextFile = new StreamWriter(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "UserList.txt");
+            TextWriter convertUserListInTextFile = new StreamWriter(Constants.PATH_TO_USER_LIST_TEXTFILE);
 
             using (convertUserListInTextFile)
             {
@@ -36,7 +36,7 @@ namespace KokoDajMu.Classes
 
         public void SaveListenerListInTextFile()
         {
-            TextWriter convertListenerListInTextFile = new StreamWriter(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "ListenerList.txt");
+            TextWriter convertListenerListInTextFile = new StreamWriter(Constants.PATH_TO_LISTENER_LIST_TEXTFILE);
 
             using (convertListenerListInTextFile)
             {
@@ -50,7 +50,7 @@ namespace KokoDajMu.Classes
 
         public void SaveArtistListInTextFile()
         {
-            TextWriter convertArtistListInTextFile = new StreamWriter (Constants.PATH_TO_TEXT_FILES_TO_WRITE + "ArtistList.txt");
+            TextWriter convertArtistListInTextFile = new StreamWriter (Constants.PATH_TO_ARTIST_LIST_TEXTFILE);
 
             using (convertArtistListInTextFile)
             {
@@ -64,7 +64,7 @@ namespace KokoDajMu.Classes
 
         public void SaveAlbumListInTextFile()
         {
-            TextWriter convertAlbumListInTextFile = new StreamWriter(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "AlbumList.txt");
+            TextWriter convertAlbumListInTextFile = new StreamWriter(Constants.PATH_TO_ALBUM_LIST_TEXTFILE);
 
             using (convertAlbumListInTextFile)
             {
@@ -78,7 +78,7 @@ namespace KokoDajMu.Classes
 
         public void SaveSongListInTextFile()
         {
-            TextWriter convertSongListInTextFile = new StreamWriter(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "SongList.txt");
+            TextWriter convertSongListInTextFile = new StreamWriter(Constants.PATH_TO_SONG_LIST_TEXTFILE);
 
             using (convertSongListInTextFile)
             {
@@ -91,13 +91,13 @@ namespace KokoDajMu.Classes
 
         public void SaveAllFilesInOne()
         {
-            StreamWriter textFileOverWritten = File.CreateText(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "KokoDajMuOverWritten.txt");
+            StreamWriter textFileOverWritten = File.CreateText(Constants.PATH_TO_KOKO_DAJ_MU_OVERWIRTTEN_TEXTFILE);
 
-            string[] userFile = File.ReadAllLines(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "UserList.txt");
-            string[] listenerFile = File.ReadAllLines(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "ListenerList.txt");
-            string[] artistFile = File.ReadAllLines(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "ArtistList.txt");
-            string[] albumFile = File.ReadAllLines(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "AlbumList.txt");
-            string[] songFile = File.ReadAllLines(Constants.PATH_TO_TEXT_FILES_TO_WRITE + "SongList.txt");
+            string[] userFile = File.ReadAllLines(Constants.PATH_TO_USER_LIST_TEXTFILE);
+            string[] listenerFile = File.ReadAllLines(Constants.PATH_TO_LISTENER_LIST_TEXTFILE);
+            string[] artistFile = File.ReadAllLines(Constants.PATH_TO_ARTIST_LIST_TEXTFILE);
+            string[] albumFile = File.ReadAllLines(Constants.PATH_TO_ALBUM_LIST_TEXTFILE);
+            string[] songFile = File.ReadAllLines(Constants.PATH_TO_SONG_LIST_TEXTFILE);
 
             using (textFileOverWritten)
             {
