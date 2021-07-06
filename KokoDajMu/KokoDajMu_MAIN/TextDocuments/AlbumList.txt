@@ -1,0 +1,2 @@
+ <album><Black Album>[1991](genres: [metal])(songs: ['Enter Sandman',  'Sad but True',  'Nothing Else Matters'])<//album>
+ <album><Obseben>[2002](genres: [rock])(songs: ['Yarost',  'Obseben'])<//album>

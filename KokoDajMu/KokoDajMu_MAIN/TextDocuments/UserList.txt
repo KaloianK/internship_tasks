@@ -1,0 +1,3 @@
+<user><Go6koy>(123456){listener}</user>
+<user><Metallica>(TheBest){artist}</user>
+<user><Stenli>(123456){artist}</user>
