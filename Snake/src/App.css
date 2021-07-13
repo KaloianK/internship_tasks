@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  margin-top: 5px;
+  background-image: none;
 }
 
 .App-logo {
@@ -37,10 +39,13 @@
   }
 }
 
-/* .poletoBrat {
+ .poletoBrat {
   border: 3px solid black;
-  /* width: 500px;
-  height: 1000px; */
+  margin-top: 75px;
+  background-color: aliceblue;
+  width: 800px;
+  height: 800px;
+ }
 
 .drpdwn-success {
   background-color: white;

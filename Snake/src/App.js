@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import SnakeBoard from './snakeBoard';
 import HighScoreTable from './HighScoreTable';
-import { Grid, Button, ButtonGroup, FormControlLabel, Switch, Checkbox } from '@material-ui/core';
+import { Grid, Button, ButtonGroup, FormControlLabel, Switch } from '@material-ui/core';
 
 function App() {
   const [snakeSpeed, setSnakeSpeed] = useState(60);
@@ -40,7 +40,7 @@ function App() {
             <FormControlLabel control={<Switch checked={allowBorders.allowedBorders} onChange={allowedBorders} name='allowedBorders' />} label="Borders Kill" />
             <FormControlLabel control={<Switch checked={discoSnake.allowedDiscoSnake} onChange={allowedDiscoSnake} name='allowedDiscoSnake' />} label="Disco snake. Warning!" />
           </Grid>
-          <Grid item xs={8}><SnakeBoard snakeSpeed={snakeSpeed} snakeSize={snakeSize} saveUserScore={saveUserScore}
+          <Grid className='snakeBoardGrid' item xs={8}><SnakeBoard snakeSpeed={snakeSpeed} snakeSize={snakeSize} saveUserScore={saveUserScore}
             allowBorders={allowBorders.allowedBorders} discoSnake={discoSnake.allowedDiscoSnake} /></Grid>
           <Grid id='highscore'>
             Highest Scores:

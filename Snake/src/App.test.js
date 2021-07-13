@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import SnakeBoard from './snakeBoard';
+import assert from 'assert';
 
 test('renders learn react link', () => {
   render(<App />);
