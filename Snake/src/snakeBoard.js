@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Food from './Food';
+
 
 class SnakeBoard extends React.Component {
     constructor(props) {
         super(props);
 
+        this.food = Food;
         this.pieceCounter = 4;
         this.score = 0;
         this.squareSize = this.props.snakeSize;
@@ -18,9 +21,10 @@ class SnakeBoard extends React.Component {
         this.keyRight = 39;
         this.keyDown = 40;
         this.boardColor = 'white';
-        this.borderColor = 'black';
+        this.borderColor = 'green';
         this.snakeColor = 'red';
         this.foodColor = 'lightgreen';
+        this.borderKillColor = 'darkred';
 
         this.boardRef = React.createRef();
         this.main = this.main.bind(this);
@@ -41,6 +45,7 @@ class SnakeBoard extends React.Component {
         this.setUpdatedSnakeCoordinates = this.setUpdatedSnakeCoordinates.bind(this);
         this.refreshSnake = this.refreshSnake.bind(this);
         this.checkForHeadCollision = this.checkForHeadCollision.bind(this);
+        this.getSnakeBoardByID = this.getSnakeBoardByID.bind(this);
 
         this.state = {
             lastKeyPressed: this.startDirection,
@@ -76,79 +81,28 @@ class SnakeBoard extends React.Component {
         }
     }
 
-    refreshFoodPosition() {
-        const { x, y } = this.state.food;
-
-        const newX = x - x % this.squareSize + (this.squareSize / 2);
-        const newY = y - y % this.squareSize + (this.squareSize / 2);
-
-        this.setFoodPosition({ x: newX, y: newY });
-    }
-
-    setUpdatedSnakeCoordinates(snakePart, snakeSizeChange) {
-        let { x, y } = snakePart;
-        let newSnakeX = 0;
-        let newSnakeY = 0;
-
-        if (this.state.lastKeyPressed === this.keyLeft) {
-            newSnakeX = (x - snakeSizeChange) - (x - snakeSizeChange) % this.props.snakeSize;
-            newSnakeY = y;
-
-            this.horizontalAdjustment = -this.squareSize;
-            this.verticalAdjustment = 0;
-        }
-
-        if (this.state.lastKeyPressed === this.keyUp) {
-            newSnakeX = x;
-            newSnakeY = y - snakeSizeChange - (y - snakeSizeChange) % this.props.snakeSize;
-
-            this.horizontalAdjustment = 0;
-            this.verticalAdjustment = -this.squareSize;
-        }
-
-        if (this.state.lastKeyPressed === this.keyRight) {
-            newSnakeX = x + snakeSizeChange - (x - snakeSizeChange) % this.props.snakeSize;
-            newSnakeY = y;
-
-            this.horizontalAdjustment = this.squareSize;
-            this.verticalAdjustment = 0;
-        }
-
-        if (this.state.lastKeyPressed === this.keyDown) {
-            newSnakeX = x;
-            newSnakeY = y + snakeSizeChange - (y - snakeSizeChange) % this.props.snakeSize;
-
-            this.horizontalAdjustment = 0;
-            this.verticalAdjustment = this.squareSize;
-        }
-
-        return { x: newSnakeX, y: newSnakeY };
-    }
-
-    refreshSnake() {
-        let snakeCopy = this.state.snake;
-
-        return snakeCopy.map(this.setUpdatedSnakeCoordinates);
-    }
-
-    getSnakeBoardStyles() {
-        return this.boardRef.current.getContext("2d");
-    }
-
     main(board) {
         const _this = this;
 
         if (this.checkForCollision(board)) {
-            let username = prompt(`GameOver! :(\nYour score is ${this.score} (1 apple = 10 points)\nEnter your username below`, '');
+            let username = prompt(`GameOver! :(\nYour score is ${_this.score} (1 apple = 10 points)\nEnter your username below`, '');
 
             if (username === null) {
                 _this.resetGame(board);
+            } else if (username === '') {
+                _this.props.saveUserScore(username, _this.score);
+                _this.resetGame(board);
             } else {
-                while (username.length < 3) {
-                    username = prompt(`GameOver! :(\nYour score is ${this.score} (1 apple = 10 points)\nEnter your username below`, '')
+                while (username.length < 3 && username !== '') {
+                    username = prompt(`GameOver! :(\nYour score is ${_this.score} (1 apple = 10 points)\nEnter your username below`, '')
+                    
+                    if (username === null) {
+                        _this.resetGame(board);
+                        break;
+                    }
                 }
 
-                this.props.saveUserScore(username, this.score);
+                _this.props.saveUserScore(username, _this.score);
                 _this.resetGame(board);
             }
         }
@@ -162,11 +116,51 @@ class SnakeBoard extends React.Component {
             _this.drawFood();
             _this.growIfFoodEaten();
             _this.main(board);
-        }, this.props.snakeSpeed)
+        }, _this.props.snakeSpeed)
+    }
+
+    setLastKeyPressed(keyCode) {
+        this.setState({
+            lastKeyPressed: keyCode
+        });
+    }
+
+    getRandomPosition(board) {
+        const x = Math.round(Math.random() * (board.current.width - (this.squareSize / 2)));
+        const y = Math.round(Math.random() * (board.current.width - (this.squareSize / 2)));
+
+        return {
+            x: x - x % this.squareSize + (this.squareSize / 2),
+            y: y - y % this.squareSize + (this.squareSize / 2)
+        };
+    }
+
+    resetGame() {
+        this.pieceCounter = 4;
+        this.setState({
+            lastKeyPressed: 39,
+            snake: this.initializeSnake()
+        });
+
+        
+
+        this.drawSnake();
+        this.score = 0;
+    }
+    
+    //CanvasStuff
+    getSnakeBoardStyles() {
+        return this.boardRef.current.getContext("2d");
+    }
+
+    getSnakeBoardByID() {
+        return document.getElementById('snakeCanvas');
     }
 
     drawCanvas(board) {
         const snakeBoardStyles = this.getSnakeBoardStyles();
+        const snakeBoardByID = this.getSnakeBoardByID();
+
         const snakeBoard = board.current;
 
         if (this.props.discoSnake) {
@@ -177,11 +171,16 @@ class SnakeBoard extends React.Component {
             snakeBoardStyles.fillStyle = this.boardColor;
         }
 
-        snakeBoardStyles.strokeStyle = this.borderColor;
+        if (this.props.allowBorders) {
+            snakeBoardByID.style.borderColor = this.borderKillColor;
+        } else {
+            snakeBoardByID.style.borderColor = this.borderColor;
+        }
+
         snakeBoardStyles.fillRect(0, 0, snakeBoard.width, snakeBoard.height);
-        snakeBoardStyles.strokeRect(0, 0, snakeBoard.width, snakeBoard.height);
     }
 
+    //Snake Stuff
     drawSnake() {
         this.state.snake.forEach(this.drawSnakePart);
     }
@@ -239,12 +238,6 @@ class SnakeBoard extends React.Component {
         }
     }
 
-    setLastKeyPressed(keyCode) {
-        this.setState({
-            lastKeyPressed: keyCode
-        });
-    }
-
     changeDirection(event) {
         const keyPressed = event.keyCode;
         const { lastKeyPressed } = this.state;
@@ -278,33 +271,6 @@ class SnakeBoard extends React.Component {
         }
     }
 
-    getRandomPosition(board) {
-        const x = Math.round(Math.random() * (board.current.width - (this.squareSize / 2)));
-        const y = Math.round(Math.random() * (board.current.width - (this.squareSize / 2)));
-
-        return {
-            x: x - x % this.squareSize + (this.squareSize / 2),
-            y: y - y % this.squareSize + (this.squareSize / 2)
-        };
-    }
-
-    setFoodPosition(foodPos) {
-        this.setState({ food: foodPos });
-    }
-
-    drawFood() {
-        const snakeBoardStyles = this.getSnakeBoardStyles();
-        const radius = this.props.snakeSize / 2;
-        let { x: foodX, y: foodY } = this.state.food;
-
-        snakeBoardStyles.beginPath();
-        snakeBoardStyles.arc(foodX, foodY, radius, 0, 2 * Math.PI, false);
-        snakeBoardStyles.fillStyle = this.foodColor;
-        snakeBoardStyles.fill();
-        snakeBoardStyles.strokeStyle = this.borderColor;
-        snakeBoardStyles.stroke();
-    }
-
     growIfFoodEaten() {
         const head = { x: this.state.snake[0].x + (this.props.snakeSize / 2), y: this.state.snake[0].y + (this.props.snakeSize / 2) };
 
@@ -322,7 +288,7 @@ class SnakeBoard extends React.Component {
 
         newSnake.push([{ x: head - this.pieceCounter * this.horizontalAdjustment, y: head - this.pieceCounter * this.verticalAdjustment }]);
 
-        return newSnake
+        return newSnake;
     }
 
     checkForHeadCollision(currentPartX, currentPartY) {
@@ -333,7 +299,7 @@ class SnakeBoard extends React.Component {
 
     checkForCollision(board) {
         let newSnakePos = [...this.state.snake];
-        const ateItself = newSnakePos.some((currentPart, index) => index != 0 && this.checkForHeadCollision(currentPart.x, currentPart.y));
+        const ateItself = newSnakePos.some((currentPart, index) => index !== 0 && this.checkForHeadCollision(currentPart.x, currentPart.y));
 
         if (this.props.allowBorders) {
             const snakeBoard = board.current;
@@ -348,16 +314,84 @@ class SnakeBoard extends React.Component {
         return ateItself;
     }
 
-    resetGame() {
-        this.pieceCounter = 4;
-        this.setState({
-            lastKeyPressed: 39,
-            snake: this.initializeSnake()
-        });
+    setUpdatedSnakeCoordinates(snakePart, snakeSizeChange) {
+        let { x, y } = snakePart;
+        let newSnakeX = 0;
+        let newSnakeY = 0;
 
-        this.drawSnake();
-        this.score = 0;
+        if (this.state.lastKeyPressed === this.keyLeft) {
+            newSnakeX = (x - snakeSizeChange) - (x - snakeSizeChange) % this.props.snakeSize;
+            newSnakeY = y;
+
+            this.horizontalAdjustment = -this.squareSize;
+            this.verticalAdjustment = 0;
+        }
+
+        if (this.state.lastKeyPressed === this.keyUp) {
+            newSnakeX = x;
+            newSnakeY = y - snakeSizeChange - (y - snakeSizeChange) % this.props.snakeSize;
+
+            this.horizontalAdjustment = 0;
+            this.verticalAdjustment = -this.squareSize;
+        }
+
+        if (this.state.lastKeyPressed === this.keyRight) {
+            newSnakeX = x + snakeSizeChange - (x - snakeSizeChange) % this.props.snakeSize;
+            newSnakeY = y;
+
+            this.horizontalAdjustment = this.squareSize;
+            this.verticalAdjustment = 0;
+        }
+
+        if (this.state.lastKeyPressed === this.keyDown) {
+            newSnakeX = x;
+            newSnakeY = y + snakeSizeChange - (y - snakeSizeChange) % this.props.snakeSize;
+
+            this.horizontalAdjustment = 0;
+            this.verticalAdjustment = this.squareSize;
+        }
+
+        return { x: newSnakeX, y: newSnakeY };
     }
+
+    refreshSnake() {
+        let snakeCopy = this.state.snake;
+
+        return snakeCopy.map(this.setUpdatedSnakeCoordinates);
+    }
+
+    //Food Stuff
+    drawFood() {
+        const snakeBoardStyles = this.getSnakeBoardStyles();
+        const radius = this.props.snakeSize / 2 - 1;
+        let { x: foodX, y: foodY } = this.state.food;
+
+        snakeBoardStyles.beginPath();
+        snakeBoardStyles.arc(foodX, foodY, radius, 0, 2 * Math.PI, false);
+        snakeBoardStyles.fillStyle = this.foodColor;
+        snakeBoardStyles.fill();
+        snakeBoardStyles.strokeStyle = this.borderColor;
+        snakeBoardStyles.stroke();
+    }
+
+    refreshFoodPosition() {
+        const { x, y } = this.state.food;
+
+        const newX = x - x % this.squareSize + (this.squareSize / 2);
+        const newY = y - y % this.squareSize + (this.squareSize / 2);
+
+        this.setFoodPosition({ x: newX, y: newY });
+    }
+
+    setFoodPosition(foodPos) {
+        this.setState({ food: foodPos });
+    }
+
+   
+
+   
+
+   
 
     render() {
         return (

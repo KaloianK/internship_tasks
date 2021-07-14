@@ -29,7 +29,7 @@ function App() {
             Snake Speed
             <ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
               <Button id='slowButton' onClick={() => setSnakeSpeed(250)}>Slow</Button>
-              <Button id='mediumButton' onClick={() => setSnakeSpeed(60)}>Medium</Button>
+              <Button id='mediumButton' variant='contained' onClick={() => setSnakeSpeed(60)}>Medium</Button>
               <Button id='fastbutton' onClick={() => setSnakeSpeed(30)}>Fast</Button>
             </ButtonGroup>
             Snake Size

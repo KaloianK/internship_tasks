@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import './App.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -22,7 +21,7 @@ HighScoreTable.propTypes = {
 
 export default function HighScoreTable(props) {
     const classes = useStyles();
-    const rows = props.userScoresMap.sort((userScoreA, userScoreB) => userScoreA.score - userScoreB.score);
+    const rows = props.userScoresMap.sort((userScoreA, userScoreB) => userScoreB.score - userScoreA.score);
 
     return (
         <TableContainer component={Paper}>
