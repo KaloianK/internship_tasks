@@ -1,6 +1,5 @@
 import React from 'react';
-import TreePicker from './TreePicker';
-import InitializeComponents from './TreePickerComponents';
+import InitializeComponents from '../../../components/TreePicker/index';
 
 export default function TreePickerModulus() {
     let teamAmembers = ['Pesho', 'Kolyo', 'Stavri'];
@@ -18,7 +17,6 @@ export default function TreePickerModulus() {
     return (
         <div>
             <button className='ButtonForDropdown' onClick={() => setButtonState(!buttonState)}>Teams</button>
-            {/* <div style={{ display: (buttonState ? 'block' : 'none') }}><TreePicker /></div> */}
             <div style={{ display: (buttonState ? 'block' : 'none') }}><InitializeComponents treePickerInput={treePickerInput}/></div>
         </div>
     )
