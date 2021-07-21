@@ -1,0 +1,14 @@
+.root {
+    max-width: 345;
+    margin-left: 30;
+  }
+
+.media {
+    height: 360;
+  }
+
+.container {
+      spacing: 2;
+      justify: "flex-start";
+      align-items: "flex-start";
+  }
