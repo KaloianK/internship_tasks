@@ -24,46 +24,62 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-const listComponent = (classes: any, handleClick: any, label: string, shouldExpand: any, open = false) => {
-    return (
-        <div>
-            <ListItem id={`${label}`} className={shouldExpand ? classes.root : classes.nested} onClick={shouldExpand? handleClick : null}>
-                <Checkbox />
-                <ListItemText primary={`${label}`} />
-                {shouldExpand
-                    ? (open ? <ExpandLess /> : <ExpandMore />)
-                    : null}
-            </ListItem>
-            {shouldExpand ? <Divider/> : null}
-        </div >
-    );
-}
 
 
 export default function InitializeComponents(props: any): JSX.Element {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    let inputLength = Object.keys(props.treePickerInput).length;
 
     const handleClick = () => {
         setOpen(!open);
     };
 
-    const getParentComponent = () => Object.keys(props.treePickerInput).map((team) => listComponent(classes, handleClick, team, true));
-
-    const getChildComponent = () => Object.values(props.treePickerInput).map((membersArray: any) => membersArray.forEach((currentMember: any) => currentMember = listComponent(classes, handleClick, currentMember, false)))
-
-    const getParentChildElement = (i: number) => {
+    const listComponent = (label: string, shouldExpand: any) => {
         return (
             <div>
-                {getParentComponent()[i]}
-                <Divider />
+                <ListItem id={`${label}`} className={shouldExpand ? classes.root : classes.nested} button onClick={(e) => { return (shouldExpand ? handleClick() : null) }}>
+                    <Checkbox onClick={(e) => e.stopPropagation()} />
+                    <ListItemText primary={`${label}`} />
+                    {shouldExpand
+                        ? (open ? <ExpandLess /> : <ExpandMore />)
+                        : null}
+                </ListItem>
+                {shouldExpand ? <Divider /> : null}
+            </div >
+        );
+    };
+
+    const getParentComponent = (i: number) => Object.keys(props.treePickerInput).filter((team, index) => index === i).map((team) => {
+        return (
+            // eslint-disable-next-line react/jsx-key
+            <div>
+                {listComponent(team, true)}
+                < Divider />
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        {getChildComponent()[i]}
+                        {getChildComponent(i)}
                     </List>
                 </Collapse>
             </div>
         )
+    });
+
+    const getChildComponent = (i: number) => {
+        const membersArray: any = Object.values(props.treePickerInput);
+        let newMemberArray = membersArray[i].map((member: any) => listComponent(member, false))
+
+        return newMemberArray;
+    }
+
+    const getListComponents = (inputLength: number) => {
+        let arrayToShow: any = [];
+
+        for (let i = 0; i < inputLength; i++) {
+            arrayToShow.push(getParentComponent(i))
+        }
+
+        return arrayToShow;
     }
 
     return (
@@ -78,9 +94,8 @@ export default function InitializeComponents(props: any): JSX.Element {
                 }
                 className={classes.root}
             >
-                {getParentChildElement(0)}
-                {getParentChildElement(1)}
-                {getParentChildElement(2)}
+                {getListComponents(inputLength)}
+
             </List>
         </div >
     )
