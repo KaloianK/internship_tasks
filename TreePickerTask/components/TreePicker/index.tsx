@@ -1,102 +1,109 @@
-import React, { useState } from "react";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Collapse from "@material-ui/core/Collapse";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import Checkbox from "@material-ui/core/Checkbox";
-import Divider from "@material-ui/core/Divider";
-import TextField from "@material-ui/core/TextField";
-import { IconButton } from "@material-ui/core";
-import CheckIcon from '@material-ui/icons/Check';
-import SaveIcon from '@material-ui/icons/Save';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import { display } from "@material-ui/system";
+import { Collapse, Divider, IconButton, InputLabel, List, ListSubheader, Select, TextField } from "@material-ui/core";
+import { ExpandLess, ExpandMore } from "@material-ui/icons";
+import CheckIcon from "@material-ui/icons/Check";
+import SaveIcon from "@material-ui/icons/Save";
+import React, { useEffect, useState } from "react";
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            width: "100%",
-            maxWidth: 360,
-            backgroundColor: theme.palette.background.paper
-        },
-        nested: {
-            paddingLeft: theme.spacing(4)
-        },
-        div: {
-            whiteSpace: "nowrap",
-        }
-    })
-);
-
-function ListComponent(label: string, shouldExpand: any, open: boolean, handleClick: any) : JSX.Element {
-    const classes = useStyles();
-
+function SingleComponent(shouldExpand: boolean, name: string, getCheckedForParent: any, open: any, componentState: any, getCheckedForChild: any, handleClick: any) {
     return (
         <div>
-            <ListItem id={`${label}`} className={shouldExpand ? classes.root : classes.nested} button onClick={(e) => { return (shouldExpand ? handleClick() : null) }}>
-                <Checkbox id = {`Checkbox ${label}`} onClick={(e) => e.stopPropagation()} />
-                <ListItemText primary={`${label}`} />
-                {shouldExpand
-                    ? (open ? <ExpandLess /> : <ExpandMore />)
-                    : null}
-            </ListItem>
-            {shouldExpand ? <Divider /> : null}
-        </div >
-    );
-};
-
-function GetChildComponent(i: number, props: any, open: boolean, handleClick: any) {
-    const membersArray: any = Object.values(props.treePickerInput);
-    const newMemberArray = membersArray[i].map((member: any) => ListComponent(member, false, open = false, handleClick = () => { }))
-
-    return newMemberArray;
+            {shouldExpand ? (
+                <div>
+                    <input
+                        type='checkbox'
+                        onChange={e => getCheckedForParent(e)}
+                        onClick={(e) => e.stopPropagation()}
+                    ></input>
+                    <label>{name}</label>
+                    {shouldExpand
+                        ? (open ? <ExpandLess onClick={handleClick} /> : <ExpandMore onClick={handleClick} />)
+                        : null}
+                </div>) : (<div>
+                    {componentState.map((currentMemberInfo: any, index: number) => (
+                        <div key={index} onClick={(event) => MultiFunctionality(currentMemberInfo, event, getCheckedForChild)}>
+                            <input
+                                type='checkbox'
+                                onChange={event => getCheckedForChild(event, currentMemberInfo)}
+                                checked={currentMemberInfo.select}
+                            ></input>
+                            <label>{currentMemberInfo.name}</label>
+                        </div>))}
+                </div>)
+            }
+        </div>
+    )
 }
 
-const getListComponents = (inputLength: number, props: any) => {
-    const arrayToShow: any = [];
-
-    for (let i = 0; i < inputLength; i++) {
-        arrayToShow.push(getParentComponent(i, props))
-    }
-
-    return arrayToShow;
+function MultiFunctionality(currentMemberInfo: any, event: any, getCheckedForChild: any) {
+    getCheckedForChild(event, currentMemberInfo);
+    event.stopPropagation()
 }
 
-const getParentComponent = (i: number, props: any) => Object.keys(props.treePickerInput).filter((team, index) => index === i).map((team) => {
+function ParentChildComponent(teamName: string, props: any) {
     const [open, setOpen] = React.useState(false);
-    const [check, setAllChecked] = React.useState(false);
-
-    const checkAll = () => {
-        let parentCheckbox = document.getElementById(`Checkbox TeamA`);
-
-    }
 
     const handleClick = () => {
         setOpen(!open);
     };
 
+    const [componentState, setComponentState]: [{ [key: string]: any }, any] = useState([]);
+
+    const getCheckedForParent = (e: any) => {
+        let checked = e.target.checked;
+
+        setComponentState(
+            componentState.map((currentMemberInfo: any) => {
+                currentMemberInfo.select = checked;
+
+                return currentMemberInfo;
+            })
+        );
+    };
+
+    const getCheckedForChild = (event: any, currentMemberInfo: any) => {
+        let checked = event.target.checked;
+
+        setComponentState(
+            componentState.map((info: any) => {
+                if (currentMemberInfo.guid === info.guid) {
+                    info.select = checked;
+                }
+
+                return info;
+            })
+        );
+    };
+
+    useEffect(() => {
+        let componentState: any = props.treePickerInput[teamName];
+
+        setComponentState(
+            componentState.map((currentMember: any) => {
+                return {
+                    select: false,
+                    guid: currentMember.guid,
+                    name: currentMember.name
+                };
+            })
+        );
+    }, []);
+
     return (
-        <div key={i}>
-            {ListComponent(team, true, open, handleClick)}
+        <div>
+            {SingleComponent(true, teamName, getCheckedForParent, open, componentState, getCheckedForChild, handleClick)}
             < Divider />
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    {GetChildComponent(i, props, open, handleClick)}
+                    {SingleComponent(false, teamName, getCheckedForParent, open, componentState, getCheckedForChild, handleClick)}
                 </List>
             </Collapse>
         </div>
-    )
-});
+    );
+}
 
 function InitializeActionButtons() {
-    const classes = useStyles();
     return (
-        <div className={classes.div}>
+        <div>
             <IconButton id={'Done Button'} onClick={() => alert('Cheese +')}>
                 <CheckIcon />
             </IconButton>
@@ -123,10 +130,10 @@ function InitializeActionButtons() {
     )
 }
 
-
-export default function InitializeComponents(props: any): JSX.Element {
-    const classes = useStyles();
-    let inputLength = Object.keys(props.treePickerInput).length;
+function TreePicker(props: any): JSX.Element {
+    const getFullTree = () => {
+        return Object.keys(props.treePickerInput).map((currentTeamName: string) => ParentChildComponent(currentTeamName, props));
+    }
 
     return (
         <div>
@@ -139,14 +146,16 @@ export default function InitializeComponents(props: any): JSX.Element {
                             <TextField id="SearchField" label="Search" variant='outlined' />
                         </ListSubheader>
                     }
-                    className={classes.root}
                 >
-                    {getListComponents(inputLength, props)}
+                    {getFullTree()}
                 </List>
-            </div >
+
+            </div>
             <div>
-                    {InitializeActionButtons()}
+                {InitializeActionButtons()}
             </div>
         </div>
-    )
+    );
 }
+
+export default TreePicker;
